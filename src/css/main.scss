@@ -18,6 +18,8 @@ figure.interactive {
 $c-developing: #F69A31;
 $c-developed: #4A84B8;
 
+$h-countryMenu: 40px;
+
 #container {
 }
 
@@ -428,6 +430,13 @@ $c-developed: #4A84B8;
 	overflow: hidden;
 }
 
+.article__anchor {
+    position: relative;
+    top: -$h-countryMenu;
+    display: block;
+    height: 0;
+}
+
 .article__header-container {
 	background: #535353;
 }
@@ -530,6 +539,7 @@ $c-developed: #4A84B8;
 .country-menu-placeholder {
 	height: 60px;
 	position: relative;
+    z-index: 5;
 }
 
 
@@ -540,8 +550,8 @@ $c-developed: #4A84B8;
 		top: 0;
 	}
 	.country-menu {
-		line-height: 40px;
-		height: 40px;
+		line-height: $h-countryMenu;
+		height: $h-countryMenu;
 	}
 }
 

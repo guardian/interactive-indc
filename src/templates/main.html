@@ -61,7 +61,8 @@
 
     <div class="content-container">
         {{~it.countries :country:i}}
-            <div class="article" country="{{=country.name}}">
+            <div class="article">
+                <a class="article__anchor" country="{{=country.name}}"></a>
                 <div class="article__header-container">
                     <div class="article__header">
                         <div class="article__emissions" country="{{=country.name}}"></div>

@@ -627,11 +627,11 @@ async function run(el) {
 
     bean.on(els.menuPlaceholder, 'click', 'li', evt => {
         var country = evt.target.getAttribute('country');
-        scrollTo(el.querySelector(`.article[country='${country}']`));
+        scrollTo(el.querySelector(`.article__anchor[country='${country}']`));
     });
 
     var updateMenuState = () => {
-        var articleEls = [].slice.call(el.querySelectorAll('.article')).reverse();
+        var articleEls = [].slice.call(el.querySelectorAll('.article__anchor')).reverse();
         for (var i = 0; i < articleEls.length; i++) {
             if (articleEls[i].getBoundingClientRect().top < 0) {
                 els.container.setAttribute('country', articleEls[i].getAttribute('country'))
