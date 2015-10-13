@@ -15,11 +15,35 @@ figure.interactive {
     overflow-x: hidden;
 }
 
-$maxBodyWidth: 980px;
 $c-developing: #F69A31;
 $c-developed: #4A84B8;
 
 #container {
+}
+
+.header,
+.article__header,
+.country-menu,
+.article__body-container {
+    @each $bp in (tablet, desktop, leftCol, wide) {
+        @include mq($bp) {
+            max-width: map-get($mq-breakpoints, $bp);
+        }
+    }
+}
+
+.article__header,
+.article__body-container {
+    padding: 0 10px;
+    @include mq(mobileLandscape) {
+        padding: 0 20px;
+    }
+    @include mq(leftCol) {
+        padding-left: 160px;
+    }
+    @include mq(wide) {
+        padding-left: 240px;
+    }
 }
 
 .lines {
@@ -69,7 +93,7 @@ $c-developed: #4A84B8;
 
 .overview-container {
 	min-height: 300px;
-	max-width: $maxBodyWidth - 20px;
+    max-width: 960px;
 	margin: auto;
 	position: relative;
 
@@ -263,13 +287,9 @@ $c-developed: #4A84B8;
     z-index: 1;
     position: relative;
 	padding: 0 10px;
-	@include mq($from: tablet) {
-		// position: absolute;
-		// right: 10px;
-		// padding: 0;
-		// top: 0;
-		padding: 0 40px;
-		max-width: 620px;
+    max-width: 620px;
+	@include mq(mobileLandscape) {
+		padding: 0 20px;
 	}
 }
 
@@ -390,7 +410,6 @@ $c-developed: #4A84B8;
 .header {
 	background: white;
 	padding-top: 12px;
-	max-width: $maxBodyWidth;
 	margin: auto;
 }
 .content-container {
@@ -412,17 +431,8 @@ $c-developed: #4A84B8;
 
 .article__header {
 	background: #969696;
-	padding: 0 10px;
-	margin: auto;
-	max-width: 620px;
-	@include mq(tablet) {
-		padding: 0 20px;
-		padding-right: 120px;
-	}
-	@include mq(desktop) {
-		padding: 0 40px;
-		padding-right: 320px;
-	}
+	box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .article__country {
@@ -447,9 +457,9 @@ $c-developed: #4A84B8;
 .article__body-container {
 	@include fs-bodyCopy(2);
 	color: #333;
-	max-width: $maxBodyWidth;
-	background: #f7f7f7;
+	background: #ffffff;
 	margin: auto;
+	padding-bottom: 24px;
 	box-sizing: border-box;
 
 	p:first-child {
@@ -467,18 +477,6 @@ $c-developed: #4A84B8;
 
 .article__body {
 	max-width: 620px;
-	margin: auto;
-	padding: 0 10px;
-	background: #ffffff;
-	@include mq(tablet) {
-		padding: 0 20px;
-		padding-right: 120px;
-	}
-	@include mq(desktop) {
-		margin: 0;
-		padding: 0 40px;
-		padding-right: 320px;
-	}
 }
 
 .country-menu-placeholder {
@@ -509,7 +507,6 @@ $c-developed: #4A84B8;
 	list-style-type: none;
 	background-color: #cbcbcb;
 	padding: 0 35px;
-	max-width: $maxBodyWidth;
 	box-sizing: border-box;
 	margin: auto;
 	@include fs-bodyHeading(1);
