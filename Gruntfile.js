@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                             // shared
                             'jspm_packages/system.js', 'src/js/config.js',
                             // interactive
-                            'build/boot.js', 'build/main.css', 'build/main.js', 'build/main.js.map', 'index.html',
+                            'build/boot.js', 'build/main.css', 'build/main.js', 'build/main.js.map', 'index.html', 'test.html',
                         ],
                         dest: 'embed/indc/',
                         params: { CacheControl: 'max-age=60' }
