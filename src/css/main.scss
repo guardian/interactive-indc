@@ -410,10 +410,17 @@ $c-developed: #4A84B8;
 
 .article__header {
 	background: #969696;
-	max-width: $maxBodyWidth;
-	padding: 0 40px;
-	box-sizing: border-box;
+	padding: 0 10px;
 	margin: auto;
+	max-width: 620px;
+	@include mq(tablet) {
+		padding: 0 20px;
+		padding-right: 120px;
+	}
+	@include mq(desktop) {
+		padding: 0 40px;
+		padding-right: 320px;
+	}
 }
 
 .article__country {
@@ -439,11 +446,11 @@ $c-developed: #4A84B8;
 	@include fs-bodyCopy(2);
 	color: #333;
 	max-width: $maxBodyWidth;
-	background: #ffffff;
+	background: #f7f7f7;
 	margin: auto;
-	padding: 0 40px;
 	padding-bottom: 24px;
 	box-sizing: border-box;
+
 	p:first-child {
 		margin-top: 0;
 		padding-top: 24px;
@@ -455,6 +462,18 @@ $c-developed: #4A84B8;
 
 .article__body {
 	max-width: 620px;
+	margin: auto;
+	padding: 0 10px;
+	background: #ffffff;
+	@include mq(tablet) {
+		padding: 0 20px;
+		padding-right: 120px;
+	}
+	@include mq(desktop) {
+		margin: 0;
+		padding: 0 40px;
+		padding-right: 320px;
+	}
 }
 
 .country-menu-placeholder {
@@ -551,11 +570,10 @@ $c-developed: #4A84B8;
 }
 
 .element-image {
-	margin: 12px 20px;
-	margin-top: 0;
-	width: 580px;
-	margin-right: -280px;
-	float: right;
+	display: block;
+	width: 100%;
+	margin: 12px 0;
+
 	img {
 		width: 100%;
 		height: auto;
@@ -563,5 +581,13 @@ $c-developed: #4A84B8;
 	figcaption {
 		@include fs-textSans(1);
 	    color: #767676;
+	}
+
+	@include mq(desktop) {
+		margin: 12px 20px;
+		margin-top: 0;
+		width: 580px;
+		margin-right: -280px;
+		float: right;
 	}
 }
