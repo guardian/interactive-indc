@@ -134,7 +134,10 @@ async function run(el) {
 
     el.innerHTML = mainTemplateFn({
         countries: countries.map(c => {
-            return { fullName: meta[c].full, name: c, blurb: data[c].blurbs.Copy, body: articles[c].response.content.fields.body}
+            return {
+                fullName: meta[c].full, name: c, blurb: data[c].blurbs.Copy,
+                body: articles[c].response.content.fields.body, heading: articles[c].response.content.webTitle
+            }
         })
     });
 

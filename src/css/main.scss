@@ -435,19 +435,29 @@ $c-developed: #4A84B8;
 .article__header {
 	background: #969696;
     margin: 0 auto;
-    height: 200px;
+    min-height: 200px;
+    position: relative;
 }
 
 .article__country {
 	color: #333;
-	@include fs-bodyHeading(3);
+	@include fs-bodyHeading(4);
 	margin: 0;
-	margin-bottom: 12px;
+	padding-bottom: 12px;
 	padding-top: 12px;
 
 
 }
+
 .article__heading {
+	@include fs-headline(7);
+	color: #fff;
+	margin: 0;
+	margin-top: 72px;
+	padding-bottom: 12px;
+}
+
+.article__blurb {
 	@include fs-bodyHeading(4);
 	max-width: 620px;
 	color: #bdbdbd;
@@ -585,21 +595,20 @@ $c-developed: #4A84B8;
 }
 
 .article__emissions {
-	width: 100%;
-	height: 240px;
-	margin: 12px 0;
+	width: 200px;
+	height: calc(100% - 48px);
+	top: 24px;
+	position: absolute;
+	margin: 0;
+	right: 10px;
 	@include mq(tablet) {
-		width: 380px;
-		height: 280px;
+		width: 320px;
 		float: right;
-		margin: 12px 20px;
-		margin-right: -100px;
+		right: 20px;
 	}
 	@include mq(desktop) {
-		width: 480px;
-		height: 300px;
-		margin: 24px 40px;
-		margin-right: -280px;
+		width: 400px;
+		right: 40px;
 	}
 }
 .line--emissions {

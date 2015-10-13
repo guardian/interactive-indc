@@ -66,11 +66,12 @@
                     <div class="article__header">
                         <div class="article__emissions" country="{{=country.name}}"></div>
                         <h1 class="article__country">{{=country.fullName}}</h1>
+                        <h2 class="article__heading">{{=country.heading || 'Headline missing'}}</h2>
                     </div>
                 </div>
                 <div class="article__body-container">
                     <div class="article__body is-collapsed">
-                        <h2 class="article__heading">{{=country.blurb}}</h2>
+                        <h2 class="article__blurb">{{=country.blurb}}</h2>
                         {{=country.body}}
                         <button class="article__more">Read more</button>
                     </div>
