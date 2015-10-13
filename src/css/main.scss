@@ -444,7 +444,7 @@ $c-developed: #4A84B8;
 	padding: 0 40px;
 	padding-bottom: 24px;
 	box-sizing: border-box;
-	p:first-child {
+	p:nth-child(2) {
 		margin-top: 0;
 		padding-top: 24px;
 	}
@@ -523,4 +523,45 @@ $c-developed: #4A84B8;
 		color: #333;
 	}
 	.article[country="#{$country}"] .article__country { color: $c-developing; }
+}
+
+.article__emissions {
+	width: 480px;
+	height: 300px;
+	margin-left: 20px;
+	margin-bottom: 12px;
+	margin-top: 24px;
+	margin-right: 0;
+	float: right;
+	margin-top: 24px;
+}
+.line--emissions {
+	stroke: #333;
+}
+.line--emissionspledge {
+	stroke: #333;
+    stroke-dasharray: 4,3;
+    stroke: #4A84B8;
+}
+
+.line--todaymarker {
+    stroke: #d9d9d9;
+    stroke-dasharray: 4,3;
+    shape-rendering: crispEdges;
+}
+
+.element-image {
+	margin: 12px 20px;
+	margin-top: 0;
+	width: 580px;
+	margin-right: -280px;
+	float: right;
+	img {
+		width: 100%;
+		height: auto;
+	}
+	figcaption {
+		@include fs-textSans(1);
+	    color: #767676;
+	}
 }

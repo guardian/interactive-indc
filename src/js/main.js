@@ -152,34 +152,47 @@ async function run(el) {
 
     els.viewCount.innerHTML = views.length;
     els.svg = d3.select(els.svgContainer).append('svg').attr({class: 'overview'});
-    els.defs = els.svg.append("defs")
+    els.defs = els.svg.append("defs");
 
-    // countries.forEach(c => {
-    //     var chartWidth = 60, chartHeight = 30;
-    //     var chartEl = el.querySelector(`.country-card__chart[country="${c}"]`)
-    //     let {width} = chartEl.getBoundingClientRect();
-    //     var emissions = range(1990, 2030).map(y => [y, data[c].emissions[y]]);
-    //     var pledge = range(2013, 2030).map(y => [y, data[c].pledgemax[y]]);
-    //     var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1  ])));
-    //     var xFn = d3.scale.linear()
-    //         .domain([1990, 2030])
-    //         .range([0, /*chartEl.clientWidth - 2*/chartWidth])
-    //     var yFn = d3.scale.linear()
-    //         .domain([0, max])
-    //         .range([/*chartEl.clientHeight, 40*/chartHeight, 0])
+    [].slice.call(el.querySelectorAll('.article__emissions')).forEach(node => {
+        var country = node.getAttribute('country');
+        let {height, width} = node.getBoundingClientRect();
+        var emissions = range(1990, 2030).map(y => [y, data[country].emissions[y]]);
+        var pledge = range(2013, 2030).map(y => [y, data[country].pledgemax[y]]);
+        var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1  ])));
+        var xFn = d3.scale.linear()
+            .domain([1990, 2030])
+            .range([0, width])
+        var yFn = d3.scale.linear()
+            .domain([0, max * 1.2])
+            .range([height, 0])
 
-    //     var points = emissions.slice();
-    //     // points.push([2030, 0])
-    //     // points.push([1990, 0])
-    //     var chartEl = el.querySelector(`.country-card__chart[country="${c}"]`)
-    //     var svg = d3.select(chartEl).append('svg').attr({height: /*chartEl.clientHeight*/chartHeight, width: chartWidth});
-    //     svg.append('path')
-    //         .attr('class', 'line line--card')
-    //         .datum(points)
-    //         .attr('d', d => {
-    //             return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
-    //         })
-    // })
+        var points = emissions.slice();
+
+        var svg = d3.select(node).append('svg').attr({height: height, width: width});
+
+        svg.append('line')
+            .attr({
+                class: 'line line--todaymarker',
+                x1: xFn(2012), x2: xFn(2012),
+                y1: height * 0.1, y2: height
+            })
+
+        svg.append('path')
+            .attr('class', 'line line--emissions')
+            .datum(points)
+            .attr('d', d => {
+                return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
+            })
+        var pledgePoints = pledge.slice()
+        pledgePoints.unshift(emissions[22]) // join to 2012 emissions
+        svg.append('path')
+            .attr('class', 'line line--emissionspledge')
+            .datum(pledgePoints)
+            .attr('d', d => {
+                return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
+            })
+    })
 
     var resetDimensions = () => {
         var rect = els.overviewContainer.getBoundingClientRect();
