@@ -473,13 +473,13 @@ async function run(el) {
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d) - projectionOffset, x2: d => midx(d) - projectionOffset,
-                y1: yFnForYear(mainYear), y2: yFnForYear(view === '2012' ? mainYear : '2030a')})
+                y1: yFnForYear(mainYear), y2: yFnForYear(view === '2012' || view === '1990' ? mainYear : '2030a')})
 
         els.countries.selectAll('.line--pledge')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d) + projectionOffset, x2: d => midx(d) + projectionOffset,
-                y1: yFnForYear(mainYear), y2: yFnForYear(view === '2030' ? mainYear : '2030b')})
+                y1: yFnForYear(mainYear), y2: yFnForYear(view === '2030' || view === '1990' ? mainYear : '2030b')})
 
 
         els.defs.selectAll('marker')
