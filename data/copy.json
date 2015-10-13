@@ -12,8 +12,8 @@
         "unit": "MtCO2e"
     },
     "absolute": {
-        "header": "And this is how the Paris pledges change 2030 emissions",
-        "desc": "More than 140 countries have submitted their plans to the UN. The US looks more ambitious than the EU here because Europe has already done a lot of the hard work to cut emissions. China and India’s pledges, as this shows, are critical to curbing emissions as they grow.",
+        "header": "But the pledges by countries change that picture",
+        "desc": "More than 140 nations have submitted their plans to the UN. The US looks more ambitious than the EU here because Europe has already done a lot of the hard work to cut emissions. China and India’s pledges, as this shows, are critical to curbing emissions as they grow.",
         "axis": "CO2e emissions (MtCO2e)",
         "unit": "MtCO2e"
     },

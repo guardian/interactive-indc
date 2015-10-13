@@ -21,7 +21,7 @@ export default function scrollTo(el) {
     var start = window.pageYOffset;
     var end = getOffset(el) + 1;
     var distance = end - start;
-    var total = Math.floor(Math.abs(distance) / 10 / interval) * interval;
+    var total = Math.floor(Math.abs(distance) / 6 / interval) * interval;
     var elapsed = 0;
 
     if (currentFrame) cancelFrame(currentFrame);
