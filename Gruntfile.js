@@ -34,11 +34,15 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            boot: { src: 'src/js/boot.js', dest: 'build/boot.js' }
+        },
+
         shell: {
             options: {
                 execOptions: { cwd: '.' }
             },
-            main: { command: './node_modules/.bin/jspm bundle -m src/js/main build/main.js' },
+            main: { command: './node_modules/.bin/jspm bundle-sfx src/js/main build/main.js --format amd' },
             embed: { command: './node_modules/.bin/jspm bundle -m src/js/embed build/embed.js' }
         },
 
@@ -66,7 +70,7 @@ module.exports = function(grunt) {
                             // shared
                             'jspm_packages/system.js', 'src/js/config.js',
                             // interactive
-                            'build/main.css', 'build/main.js', 'build/main.js.map', 'index.html',
+                            'build/boot.js', 'build/main.css', 'build/main.js', 'build/main.js.map', 'index.html',
                         ],
                         dest: 'embed/indc/',
                         params: { CacheControl: 'max-age=60' }
@@ -100,6 +104,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', ['clean', 'sass'])
-    grunt.registerTask('deploy', ['build', 'shell', 'aws_s3']);
+    grunt.registerTask('deploy', ['build', 'shell', 'copy', 'aws_s3']);
     grunt.registerTask('default', ['build', 'connect', 'watch']);
 }
