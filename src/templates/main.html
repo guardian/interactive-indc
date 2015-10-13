@@ -64,14 +64,15 @@
             <div class="article" country="{{=country.name}}">
                 <div class="article__header-container">
                     <div class="article__header">
+                        <div class="article__emissions" country="{{=country.name}}"></div>
                         <h1 class="article__country">{{=country.fullName}}</h1>
-                        <h1 class="article__heading">{{=country.blurb}}</h1>
                     </div>
                 </div>
                 <div class="article__body-container">
-                    <div class="article__body">
-                        <div class="article__emissions" country="{{=country.name}}"></div>
+                    <div class="article__body is-collapsed">
+                        <h2 class="article__heading">{{=country.blurb}}</h2>
                         {{=country.body}}
+                        <button class="article__more">Read more</button>
                     </div>
                 </div>
             </div>

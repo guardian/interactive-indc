@@ -640,6 +640,10 @@ async function run(el) {
 
     window.addEventListener('scroll', throttle(updateMenuState, 150));
 
+    [].slice.call(el.querySelectorAll('.article__more')).forEach(moreEl => {
+        moreEl.addEventListener('click', () => bonzo(moreEl.parentNode).removeClass('is-collapsed'));
+    });
+
     iframeMessenger.resize()
 }
 
