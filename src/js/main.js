@@ -158,7 +158,7 @@ async function run(el) {
         var country = node.getAttribute('country');
         let {height, width} = node.getBoundingClientRect();
         var emissions = range(1990, 2030).map(y => [y, data[country].emissions[y]]);
-        var pledge = range(2013, 2030).map(y => [y, data[country].pledgemax[y]]);
+        var pledge = range(2013, 2030).map(y => [y, data[country].pledgemin[y]]);
         var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1  ])));
         var xFn = d3.scale.linear()
             .domain([1990, 2030])
