@@ -1,0 +1,517 @@
+@import 'font';
+@import 'mq';
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+body { background: #f5f5f5; }
+
+$maxBodyWidth: 980px;
+$c-developing: #F69A31;
+$c-developed: #4A84B8;
+
+#container {
+}
+
+.lines {
+	line {
+		stroke-width: 1;
+		fill: none;
+		vector-effect: non-scaling-stroke;
+		shape-rendering: crispEdges;
+	}
+	.zeropledge {
+		stroke: #bdbdbd;
+	}
+}
+
+.line {
+	stroke-width: 1;
+	fill: none;
+	vector-effect: non-scaling-stroke;
+}
+
+.labels text {
+	text-anchor: middle;
+    font-size: 14px;
+}
+
+.country--developed {
+	.point { fill: $c-developed; }
+	.line { stroke: $c-developed; }
+	.country-label { fill: $c-developed; }
+	.overview--developed & {
+		display: none;
+	}
+}
+
+.country--developing {
+	.point { fill: $c-developing; }
+	.line { stroke: $c-developing; }
+	.country-label { fill: $c-developing; }
+	.overview--developing & {
+		display: none;
+	}
+}
+
+.overview {
+	margin-top: -24px;
+}
+
+.overview-container {
+	min-height: 300px;
+	max-width: $maxBodyWidth - 20px;
+	margin: auto;
+	position: relative;
+
+	svg {
+		// overflow: visible;
+	}
+}
+
+.line--gridline {
+    stroke: #e1e1e1;
+    stroke-dasharray: 2, 5;
+}
+
+.line--1990,
+.line--2012,
+.line--2030,
+.line--past,
+.line--projection,
+.line--pledge {
+	vector-effect: non-scaling-stroke;
+	shape-rendering: crispEdges;
+}
+
+.line--2012 {
+	stroke-width: 2;
+}
+
+.line--projection {
+	stroke-width: 2;
+}
+.line--pledge {
+	stroke-dasharray: 2,1;
+	stroke-width: 4px;
+	@include mq(tablet) {
+		stroke-width: 10;
+		stroke-dasharray: 0;
+	}
+}
+
+.line--past {
+	opacity: 0.3;
+	display: none;
+	stroke-width: 10;
+    stroke-dasharray: 1 1;
+	.country--developed & { stroke: $c-developed; }
+	.country--developing & { stroke: $c-developing; }
+}
+
+.country-label {
+	text-anchor: middle;
+	font-size: 12px;
+	fill: #767676;
+	opacity: 0.7;
+	stroke: white;
+    paint-order: stroke;
+    stroke-width: 2;
+}
+
+.key {
+	display: none;
+	@include mq(tablet) {
+		display: block;
+	}
+	text:not(.key__header) {
+		font-size: 12px;
+		fill: #767676;
+	}
+}
+
+.key__header {
+	@include fs-bodyHeading(1);
+	fill: #333 !important;
+}
+
+
+.zeroline {
+	stroke: #dfdfdf;
+}
+
+.controls {
+	float: right;
+	display: none;
+	label {
+		display: block;
+	}
+}
+
+.zerolabel {
+	@include fs-textSans(1);
+	text-anchor: start;
+	fill: #767676;
+}
+
+.control-panel {
+	input {
+		display: none;
+	}
+	label span {
+		display: inline-block;
+		background-color: #f1f1f1;
+		border-radius: 24px;
+		@include fs-textSans(1);
+		padding: 4px 10px;
+		cursor: pointer;
+	}
+	input:checked + span {
+		background-color: #005689;
+		color: #fff;
+	}
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 500px;
+}
+
+.country-hitbox {
+	fill: transparent;
+	stroke: none;
+	// cursor: pointer;
+}
+
+.overview-container[view="cumulative"],
+.overview-container[view="cumulativezoom"],
+.overview-container[view="1990"] {
+	.key {
+		display: none;
+	}
+	.country {
+		.line--2012 {
+			stroke-width: 3;
+		}
+		.line--pledge,
+		.line--projection {
+			display: none;
+		}
+	}
+}
+
+.overview-container[view="2012"] {
+	.key {
+		.line--projection, .key__projection-text,
+		.line--pledge, .key__pledge-text {
+			display: none;
+		}
+	}
+	.country {
+		.line--2012 {
+			stroke-width: 3;
+		}
+		.line--pledge,
+		.line--projection {
+			display: none;
+		}
+	}
+}
+
+.overview-container[view="2030"] {
+	.key {
+		.line--pledge, .key__pledge-text {
+			display: none;
+		}
+	}
+	.country {
+		.line--pledge {
+			display: none;
+		}
+	}
+}
+
+
+.overview-container[view="1990"] .country .line--past,
+.overview-container[view="2012"] .country .line--past {
+	display: block;
+}
+
+.overview-container[view="2012"] .key .line--past {
+	display: inline;
+}
+
+.overview-container:not([view="2012"]) .key .key__past-text {
+	display: none;
+}
+
+.svg-container{
+	padding-top: 12px;
+	@include mq(tablet) {
+		padding-top: 0;
+	}
+}
+.copy {
+    z-index: 1;
+    position: relative;
+	padding: 0 10px;
+	@include mq($from: tablet) {
+		// position: absolute;
+		// right: 10px;
+		// padding: 0;
+		// top: 0;
+		padding: 0 40px;
+		max-width: 620px;
+	}
+}
+
+.copy__header {
+	@include fs-bodyHeading(1);
+	position: absolute;
+	top: 0;
+	left: 30px;
+	margin-top: 0;
+	margin-bottom: 6px;
+	@include mq(tablet) {
+		@include fs-bodyHeading(3, true);
+		position: static;
+	}
+}
+
+.copy__desc {
+	@include fs-bodyCopy(1);
+	min-height: 80px;
+	margin-bottom: 0;
+	margin-top: 6px;
+}
+
+.axis__line {
+	stroke: #dfdfdf;
+	shape-rendering: crispEdges;
+}
+.axis__text {
+	@include fs-textSans(3);
+	fill: #999;
+}
+.axis__hover {
+	stroke: #e1e1e1;
+	shape-rendering: crispEdges;
+}
+
+.axis__hovertext {
+	@include fs-textSans(1);
+	fill: #999;
+}
+
+.stepper {
+	margin: auto;
+    background-color: white;
+	// margin-bottom: 12px;
+	// position: absolute;
+	// right: 20px;
+	// top: 24px;
+	@include mq(tablet) {
+		// top: 0;
+		// right: 420px;
+		margin-left: 40px;
+		position: absolute;
+		// margin-bottom: -72px;
+	}
+	svg {
+		overflow: visible;
+	}
+}
+.stepper__progress {
+	@include fs-textSans(4);
+	line-height: 30px;
+	color: #333;
+	cursor: pointer;
+	text-align: center;
+	@include mq(tablet) {
+		// text-align: right;
+		// margin-right: 10px;
+		display: inline-block;
+		// line-height: ;
+	}
+}
+
+.stepper__arrow {
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	width: 48px;
+	height: 60px;
+	padding: 0;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.stepper__arrow--prev {
+	.overview-container[view="%"] & {
+		opacity: 0.2;
+		cursor: default;
+	}
+}
+
+@keyframes bounce {
+	0%    {opacity: 1; right: calc(100% + 5px)}
+	50%   {opacity: 1; right: calc(100% + 15px)}
+	100%  {opacity: 1; right: calc(100% + 5px)}
+}
+
+
+.stepper__arrow--next {
+	.overview-container[view="cumulative"] & {
+		opacity: 0.2;
+		cursor: default;
+	}
+}
+
+.country-card__chart {
+	position: absolute;
+	top: 10px;
+	right: 24px;
+}
+
+.line--card {
+	stroke: #767676;
+}
+
+
+.header {
+	background: white;
+	padding-top: 12px;
+	max-width: $maxBodyWidth;
+	margin: auto;
+}
+.content-container {
+	margin: auto;
+	background-color: #f7f7f7;
+}
+.content-body {
+	max-width: 620px;
+	margin: auto;
+}
+
+.article {
+	overflow: hidden;
+}
+
+.article__header-container {
+	background: #535353;
+}
+
+.article__header {
+	background: #969696;
+	max-width: $maxBodyWidth;
+	padding: 0 40px;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+.article__country {
+	color: #333;
+	@include fs-bodyHeading(3);
+	margin: 0;
+	margin-bottom: 12px;
+	padding-top: 12px;
+
+
+}
+.article__heading {
+	@include fs-bodyHeading(4);
+	max-width: 620px;
+	color: #dfdfdf;
+	margin: 0;
+	margin-top: 12px;
+	padding-bottom: 12px;
+
+}
+
+.article__body-container {
+	@include fs-bodyCopy(2);
+	color: #333;
+	max-width: $maxBodyWidth;
+	background: #ffffff;
+	margin: auto;
+	padding: 0 40px;
+	padding-bottom: 24px;
+	box-sizing: border-box;
+	p:first-child {
+		margin-top: 0;
+		padding-top: 24px;
+	}
+	a {
+		color: #004A83;
+	}
+}
+
+.article__body {
+	max-width: 620px;
+}
+
+.country-menu-placeholder {
+	height: 60px;
+	position: relative;
+}
+
+
+.country-menu-placeholder--fixed {
+	background-color: #c3c3c3;
+	.country-menu-container {
+		position: fixed;
+		top: 0;
+	}
+	.country-menu {
+		line-height: 40px;
+		height: 40px;
+	}
+}
+
+.country-menu-container {
+	background-color: #c3c3c3;
+	position: absolute;
+	width: 100%;
+}
+
+.country-menu {
+	list-style-type: none;
+	background-color: #cbcbcb;
+	padding: 0 35px;
+	max-width: $maxBodyWidth;
+	box-sizing: border-box;
+	margin: auto;
+	@include fs-bodyHeading(1);
+	line-height: 60px;
+	height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.country-menu__item {
+	color: white;
+	cursor: pointer;
+	border-bottom: 3px solid transparent;
+	box-sizing: border-box;
+	padding: 0 5px;
+}
+
+@each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
+	.container[country="#{$country}"] .country-menu__item[country="#{$country}"],
+	.country-menu__item[country="#{$country}"]:hover {
+		border-color: $c-developed;
+		color: #333;
+	}
+	.article[country="#{$country}"] .article__country { color: $c-developed; }
+}
+
+@each $country in ('Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco') {
+	.container[country="#{$country}"] .country-menu__item[country="#{$country}"],
+	.country-menu__item[country="#{$country}"]:hover {
+		border-color: $c-developing;
+		color: #333;
+	}
+	.article[country="#{$country}"] .article__country { color: $c-developing; }
+}

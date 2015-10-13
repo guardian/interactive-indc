@@ -1,0 +1,58 @@
+{
+    "EU": {
+        "compact": "EU",
+        "full": "European Union"
+    },
+    "Japan": {
+        "compact": "JP",
+        "full": "Japan"
+    },
+    "Russia": {
+        "compact": "RU",
+        "full": "Russia"
+    },
+    "US": {
+        "compact": "US",
+        "full": "United States"
+    },
+    "Canada": {
+        "compact": "CA",
+        "full": "Canada"
+    },
+    "Australia": {
+        "compact": "AU",
+        "full": "Australia"
+    },
+    "Brazil": {
+        "compact": "BR",
+        "full": "Brazil"
+    },
+    "China": {
+        "compact": "CH",
+        "full": "China"
+    },
+    "India": {
+        "compact": "IN",
+        "full": "India"
+    },
+    "Indonesia": {
+        "compact": "ID",
+        "full": "Indonesia"
+    },
+    "Ethiopia": {
+        "compact": "ET",
+        "full": "Ethiopia"
+    },
+    "Kenya": {
+        "compact": "KE",
+        "full": "Kenya"
+    },
+    "Mexico": {
+        "compact": "MX",
+        "full": "Mexico"
+    },
+    "Morocco": {
+        "compact": "MA",
+        "full": "Morocco"
+    }
+}

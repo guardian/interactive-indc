@@ -1,0 +1,44 @@
+{
+    "cumulative": {
+        "header": "This is why poorer countries talk about historical responsibility",
+        "desc": "The issue of historical responsibility for climate change crops up a lot at international negotiations. This shows why. Europe and the US are responsible for around half the cumulative CO2 emitted between 1850 and 2012, and CO2 can remain in the atmosphere for centuries.",
+        "axis": "Cumulative CO2 emissions (MtCO2)",
+        "unit": "MtCO2"
+    },
+    "1990": {
+        "header": "The world was a very different place in 1990 ",
+        "desc": "… When the EU and the US were far and away the biggest emitters. Europe’s emissions have fallen considerably since then, through a combination of energy efficiency, renewable energy and gas. Russian emissions fell, but because of industrial decline, not a green drive by the Kremlin.",
+        "axis": "CO2e emissions (MtCO2e)",
+        "unit": "MtCO2e"
+    },
+    "2012": {
+        "header": "Climate change is no longer just caused by developed countries",
+        "desc": "The gap between richer and poorer countries is far narrower today than 25 years ago, and in China’s case its burgeoning economy saw it overtake the US to become the world’s biggest polluter in 2006. The bold lines are 2012 emissions – the thin lines show how emissions have changed since 1990...",
+        "axis": "CO2e emissions (MtCO2e)",
+        "unit": "MtCO2e"
+    },
+    "2030": {
+        "header": "Here’s what emissions look like in 2030 without action",
+        "desc": "This is why Paris is necessary. Developing countries still have a lot of developing to do – and that means big increases in emissions that would lock in dangerous global warming. That’s why, unlike the only previous international climate protocol, Paris will apply to rich and poor countries.",
+        "axis": "CO2e emissions (MtCO2e)",
+        "unit": "MtCO2e"
+    },
+    "absolute": {
+        "header": "And this is how the Paris pledges change 2030",
+        "desc": "More than 140 countries have submitted their plans to the UN. The US looks more ambitious than the EU here because Europe has already done a lot of the hard work to cut emissions. China and India’s pledges, as this shows, are critical to curbing emissions as they grow.",
+        "axis": "CO2e emissions (MtCO2e)",
+        "unit": "MtCO2e"
+    },
+    "percapita": {
+        "header": "But don’t blame Indians for climate change",
+        "desc": "The average Chinese and Indian carbon footprint will still be lower than the average American or Canadian’s, even after the cuts. Ethiopians and Indonesians, living in two of the world’s nine fastest growing populations, will still be small contributors to climate change at an individual level.",
+        "axis": "CO2e emissions (MtCO2e) per capita",
+        "unit": "MtCO2e"
+    },
+    "%": {
+        "header": "How the countries pledges line up",
+        "desc": "Countries can give the UN any baseline year for their carbon cuts, making them hard to compare. Here we’ve lined up all the pledges against a 2012 baseline. It’s a crude method – for example Japan’s emissions were high that year, making it look ambitious – so it should not be read as a ranking. It’s almost impossible to compare countries like-for-like.",
+        "axis": "% change in emissions from 2012 (%)",
+        "unit": "%"
+    }
+}
