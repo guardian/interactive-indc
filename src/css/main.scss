@@ -462,7 +462,7 @@ $c-developed: #4A84B8;
 	padding-bottom: 24px;
 	box-sizing: border-box;
 
-	p:first-child {
+	p:nth-child(2) {
 		margin-top: 0;
 		padding-top: 24px;
 	}
@@ -547,14 +547,22 @@ $c-developed: #4A84B8;
 }
 
 .article__emissions {
-	width: 480px;
-	height: 300px;
-	margin-left: 20px;
-	margin-bottom: 12px;
-	margin-top: 24px;
-	margin-right: 0;
-	float: right;
-	margin-top: 24px;
+	width: 100%;
+	height: 240px;
+	margin: 12px 0;
+	@include mq(tablet) {
+		width: 380px;
+		height: 280px;
+		float: right;
+		margin: 12px 20px;
+		margin-right: -100px;
+	}
+	@include mq(desktop) {
+		width: 480px;
+		height: 300px;
+		margin: 24px 40px;
+		margin-right: -280px;
+	}
 }
 .line--emissions {
 	stroke: #333;

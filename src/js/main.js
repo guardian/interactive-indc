@@ -154,44 +154,58 @@ async function run(el) {
     els.svg = d3.select(els.svgContainer).append('svg').attr({class: 'overview'});
     els.defs = els.svg.append("defs");
 
-    [].slice.call(el.querySelectorAll('.article__emissions')).forEach(node => {
+
+    var emissionsRenderFns = [].slice.call(el.querySelectorAll('.article__emissions')).map(node => {
         var country = node.getAttribute('country');
-        let {height, width} = node.getBoundingClientRect();
         var emissions = range(1990, 2030).map(y => [y, data[country].emissions[y]]);
         var pledge = range(2013, 2030).map(y => [y, data[country].pledgemin[y]]);
-        var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1  ])));
-        var xFn = d3.scale.linear()
-            .domain([1990, 2030])
-            .range([0, width])
-        var yFn = d3.scale.linear()
-            .domain([0, max * 1.2])
-            .range([height, 0])
+
+            var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1])));
 
         var points = emissions.slice();
 
-        var svg = d3.select(node).append('svg').attr({height: height, width: width});
+        var svg = d3.select(node).append('svg')
 
         svg.append('line')
-            .attr({
-                class: 'line line--todaymarker',
-                x1: xFn(2012), x2: xFn(2012),
-                y1: height * 0.1, y2: height
-            })
+            .attr({class: 'line line--todaymarker'})
 
         svg.append('path')
             .attr('class', 'line line--emissions')
             .datum(points)
-            .attr('d', d => {
-                return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
-            })
+
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
         svg.append('path')
             .attr('class', 'line line--emissionspledge')
             .datum(pledgePoints)
-            .attr('d', d => {
-                return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
+
+        return function render() {
+            let {height, width} = node.getBoundingClientRect();
+            var xFn = d3.scale.linear()
+                .domain([1990, 2030])
+                .range([0, width])
+            var yFn = d3.scale.linear()
+                .domain([0, max * 1.2])
+                .range([height, 0])
+
+            let svg = d3.select(node).select('svg');
+            svg.attr({height: height, width: width});
+
+            svg.select('.line--todaymarker').attr({
+                x1: xFn(2012), x2: xFn(2012),
+                y1: height * 0.1, y2: height
             })
+
+            svg.select('.line--emissions')
+                .attr('d', d => {
+                    return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
+                })
+
+            svg.select('.line--emissionspledge')
+                .attr('d', d => {
+                    return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
+                })
+        }
     })
 
     var resetDimensions = () => {
@@ -533,6 +547,7 @@ async function run(el) {
         els.svg.attr({width: width, height: height});
 
         renderLines();
+        emissionsRenderFns.forEach(fn => fn())
         renderCountries();
     }
 
