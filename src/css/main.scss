@@ -373,10 +373,11 @@ $c-developed: #4A84B8;
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
+    transition: opacity 0.1s ease-out;
 }
 
 .stepper__arrow--prev {
-	.overview-container[view="%"] & {
+	.overview-container[view="2030"] & {
 		opacity: 0.2;
 		cursor: default;
 	}
@@ -390,7 +391,7 @@ $c-developed: #4A84B8;
 
 
 .stepper__arrow--next {
-	.overview-container[view="cumulative"] & {
+	.overview-container[view="2012"] & {
 		opacity: 0.2;
 		cursor: default;
 	}
