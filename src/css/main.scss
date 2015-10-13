@@ -457,8 +457,9 @@ $h-countryMenu: 40px;
 	margin: 0;
 	padding-bottom: 12px;
 	padding-top: 12px;
-
-
+	@include mq(desktop) {
+		padding-top: 24px;
+	}
 }
 
 .article__heading {
