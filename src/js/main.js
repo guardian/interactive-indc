@@ -130,7 +130,7 @@ async function run(el) {
     var offsetPledge = -offset1990+2;
     var keyVisible = true;
     var maxGridLines = 12;
-    var views = ['%', '2030', 'absolute', 'percapita', '2012', '1990', 'cumulative'];
+    var views = ['2030', 'absolute', '%', 'percapita', '1990', '2012'];
 
     el.innerHTML = mainTemplateFn({
         countries: countries.map(c => {
