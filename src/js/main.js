@@ -8,6 +8,7 @@ import articles from '../../data/articles.json!json'
 import bean from 'fat/bean'
 import copy from '../../data/copy.json!json'
 import meta from '../../data/meta.json!json'
+import scrollTo from './lib/scrollTo'
 
 var mainTemplateFn = doT.template(mainTemplate);
 
@@ -592,6 +593,11 @@ async function run(el) {
             menuFixed = false;
         }
     })
+
+    bean.on(els.menuPlaceholder, 'click', 'li', evt => {
+        var country = evt.target.getAttribute('country');
+        scrollTo(el.querySelector(`.article[country='${country}']`));
+    });
 
     var updateMenuState = () => {
         var articleEls = [].slice.call(el.querySelectorAll('.article')).reverse();
