@@ -1,10 +1,16 @@
 System.config({
   defaultJSExtensions: true,
-  transpiler: "babel",
+  transpiler: "traceur",
   babelOptions: {
     "optional": [
       "runtime",
       "optimisation.modules.system"
+    ]
+  },
+  traceurOptions: {
+    asyncFunctions: true,
+    "optional": [
+      "runtime"
     ]
   },
   paths: {
