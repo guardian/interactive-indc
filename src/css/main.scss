@@ -94,7 +94,7 @@ $h-countryMenu: 40px;
 }
 
 .indc-overview-container {
-	min-height: 300px;
+	min-height: 200px;
     max-width: 960px;
 	position: relative;
 
@@ -137,7 +137,7 @@ $h-countryMenu: 40px;
 .indc-line--pledge {
 	stroke-dasharray: 2,1;
 	stroke-width: 4px;
-	@include mq(tablet) {
+	@include mq(desktop) {
 		stroke-width: 10;
 		stroke-dasharray: 0;
 	}
@@ -163,21 +163,10 @@ $h-countryMenu: 40px;
 }
 
 .indc-key {
-	display: none;
-	@include mq(tablet) {
-		display: block;
-	}
-	text:not(.indc-key__header) {
-		font-size: 12px;
-		fill: #767676;
-	}
+	display: block;
+	font-size: 12px;
+	fill: #767676;
 }
-
-.indc-key__header {
-	@include fs-bodyHeading(1);
-	fill: #333 !important;
-}
-
 
 .indc-zeroline {
 	stroke: #dfdfdf;
@@ -301,7 +290,6 @@ $h-countryMenu: 40px;
 
 .indc-copy__header {
 	@include fs-bodyHeading(1);
-	position: absolute;
 	top: 0;
 	left: 30px;
 	margin-top: 0;
@@ -340,16 +328,9 @@ $h-countryMenu: 40px;
 .indc-stepper {
 	margin: auto;
     background-color: white;
-	// margin-bottom: 12px;
-	// position: absolute;
-	// right: 20px;
-	// top: 24px;
+	position: absolute;
 	@include mq(tablet) {
-		// top: 0;
-		// right: 420px;
 		margin-left: 40px;
-		position: absolute;
-		// margin-bottom: -72px;
 	}
 	svg {
 		overflow: visible;
@@ -361,10 +342,10 @@ $h-countryMenu: 40px;
 	color: #333;
 	cursor: pointer;
 	text-align: center;
+		display: inline-block;
 	@include mq(tablet) {
 		// text-align: right;
 		// margin-right: 10px;
-		display: inline-block;
 		// line-height: ;
 	}
 }

@@ -122,7 +122,7 @@ async function run(el) {
 
     var width, height;
     var xpadding = 0;
-    var leftpadding = 25;
+    var leftpadding = 0//25;
     var max = regmax = 15000;
     var toppadding = 30;
     var view;
@@ -310,7 +310,7 @@ async function run(el) {
         x: 0
     })
 
-    groups.key.append('text').text('2012 emissions').attr({x: 50, y: 34});
+    var key2012text = groups.key.append('text').text('2012 emissions').attr({x: 30, y: 34});
     var keypledgetext = groups.key.append('text').attr({class: 'indc-key__pledge-text', x: 0, y: 68});
     keypledgetext.append('tspan').text('2030 projection')
     keypledgetext.append('tspan').text('with pledge').attr({x: 0, dy: '1.4em'})
@@ -372,7 +372,7 @@ async function run(el) {
         var bottompadding = 18;
         var width2012 = compact ? 18 : 36;
 
-        groups.key.attr('transform', `translate(${width - leftpadding - 200}, 80)`)
+        groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, 50)`)
 
         els.yaxistext.attr({
             x: 0, y: height - bottompadding - 20,
