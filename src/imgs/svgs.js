@@ -9,7 +9,9 @@ var chartFilenames = fs.readdirSync(chartdir);
 
 var out = _(chartFilenames)
 	.map(fn => {
-		return [fn.split('.')[0], fs.readFileSync(path.join(chartdir, fn), 'utf8')]
+		var fullSvg = fs.readFileSync(path.join(chartdir, fn), 'utf8')
+		var i = fullSvg.indexOf('<svg');
+		return [fn.split('.')[0], fullSvg.slice(i)]
 	})
 	.zipObject()
 	.value()

@@ -7,14 +7,6 @@ body, html {
 	padding: 0;
 }
 
-.card__chart-container {
-	width: 100%;
-	position: relative;
-	> div:first-child {
-		position: relative;
-		padding-bottom: 50%;
-	}
-}
 
 $c-developing: #F69A31;
 $c-developed: #4A84B8;
@@ -52,6 +44,7 @@ $c-developed: #4A84B8;
 	padding: 0 10px;
 	max-width: 620px;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .card__country-name {
@@ -98,4 +91,22 @@ $c-developed: #4A84B8;
 }
 .card__chart-container svg {
 	position: static !important;
+}
+
+@media (max-width: 380px) {
+	.card__blurb {
+		margin-bottom: 140px;
+	}
+
+	.card__chart-container {
+		position: absolute;
+		bottom: 50px;
+	}
+}
+
+@media (min-width: 380px) {
+	.card__chart-container {
+		float: right;
+		margin-left: 10px;
+	}
 }
