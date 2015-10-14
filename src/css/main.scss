@@ -186,8 +186,13 @@ $h-countryMenu: 40px;
     stroke-dasharray: 2,1;
     stroke-width: 4px;
     @include mq(tablet) {
-        stroke-width: 10;
+        stroke-width: 7;
         stroke-dasharray: 0;
+    }
+    .indc-overview {
+        @include mq(tablet) {
+            stroke-width: 10;
+        }
     }
 }
 
@@ -401,6 +406,15 @@ $h-countryMenu: 40px;
 .indc-axis__hovertext {
     @include fs-textSans(1);
     fill: #999;
+}
+
+.indc-country {
+    @include fs-textSans(1);
+    font-weight: normal;
+    text {
+        fill: #767676;
+        text-anchor: middle;
+    }
 }
 
 .indc-stepper {
@@ -697,12 +711,12 @@ $h-countryMenu: 40px;
 
 .indc-article__emissions {
     width: 100%;
-    height: 120px;
+    height: 130px;
     margin-bottom: 10px;
     @include mq(mobileLandscape) {
         margin-bottom: 0;
         margin-left: 25px;
-        width: 200px;
+        width: 220px;
         float: right;
     }
 }

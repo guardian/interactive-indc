@@ -229,15 +229,15 @@ async function run(el) {
         }
 
         emissionsMarker(`projection-${i}`, 10, 'white')
-        emissionsMarker(`pledge-${i}`, 20, colors[dtype])
+        emissionsMarker(`pledge-${i}`, 14, colors[dtype])
 
         svg.attr({class: 'indc-country indc-country--' + dtype});
 
         svg.append('line').attr('class', 'indc-todayline')
 
-        svg.append('path')
-            .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})
-            .datum(points)
+        svg.append('text').attr('class', 'indc-chartlabel').text('1990');
+        svg.append('text').attr('class', 'indc-chartlabel').text('2012');
+        svg.append('text').attr('class', 'indc-chartlabel').text('2030');
 
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
@@ -245,26 +245,32 @@ async function run(el) {
             .attr({'class': 'indc-line indc-line--pledge', 'marker-end': `url(#marker-pledge-${i})`})
             .datum(pledgePoints)
 
+        svg.append('path')
+            .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})
+            .datum(points)
+
         return function render() {
             let {height, width} = node.getBoundingClientRect();
+            var chartHeight = height - 14;
             var xFn = d3.scale.linear()
                 .domain([1990, 2030])
-                .range([0, width - 8])
+                .range([15, width - 18])
             var yFn = d3.scale.linear()
                 .domain([0, max * 1.2])
-                .range([height, 0])
+                .range([chartHeight, 0])
 
             let svg = d3.select(node).select('svg');
             svg.attr({height: height, width: width});
 
             svg.select('.indc-todayline').attr({
                 x1: xFn(2012), x2: xFn(2012),
-                y1: height * 0.1, y2: height
-            })
+                y1: chartHeight * 0.1, y2: chartHeight
+            });
 
-            svg.select('.indc-zeroline').attr({
-                x1: xFn(1990), x2: xFn(2030),
-                y1: height, y2: height
+            [].slice.call(node.querySelectorAll('.indc-chartlabel')).forEach(labelEl => {
+                var year = +labelEl.textContent;
+                labelEl.setAttribute('x', xFn(year));
+                labelEl.setAttribute('y', height);
             });
 
             svg.select('.indc-line--emissions')
