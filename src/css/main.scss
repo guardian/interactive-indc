@@ -412,7 +412,7 @@ $h-countryMenu: 40px;
     @include fs-textSans(1);
     font-weight: normal;
     text {
-        fill: #767676;
+        fill: #717171;
         text-anchor: middle;
     }
 }
@@ -719,13 +719,6 @@ $h-countryMenu: 40px;
         width: 220px;
         float: right;
     }
-}
-
-.indc-year-text {
-    @include fs-textSans(2);
-    font-weight: normal;
-    fill: #767676;
-    text-anchor: middle;
 }
 
 .element-image {
