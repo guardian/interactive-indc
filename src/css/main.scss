@@ -421,7 +421,7 @@ $h-countryMenu: 40px;
     margin: auto;
     position: absolute;
     svg {
-        overflow: visible;
+        display: block;
     }
 }
 .indc-stepper__progress {
@@ -431,10 +431,12 @@ $h-countryMenu: 40px;
     cursor: pointer;
     text-align: center;
     display: inline-block;
+    background-color: white;
+    margin: 0 5px;
 }
 
 .indc-stepper__arrow {
-    background-color: transparent;
+    background-color: white;
     border: 0;
     outline: 0;
     width: 48px;
