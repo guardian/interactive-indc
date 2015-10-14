@@ -249,7 +249,7 @@ async function run(el) {
             let {height, width} = node.getBoundingClientRect();
             var xFn = d3.scale.linear()
                 .domain([1990, 2030])
-                .range([0, width])
+                .range([0, width - 8])
             var yFn = d3.scale.linear()
                 .domain([0, max * 1.2])
                 .range([height, 0])
