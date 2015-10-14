@@ -673,12 +673,8 @@ $h-countryMenu: 40px;
     @include fs-bodyHeading(1);
     line-height: 60px;
     height: 60px;
-    display: flex;
-    justify-content: space-between;
-    overflow-x: scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    display: table;
+    width: 100%;
     @include mq(tablet) {
         padding: 0 15px;
     }
@@ -688,11 +684,13 @@ $h-countryMenu: 40px;
 }
 
 .indc-country-menu__item {
+    display: table-cell;
     color: white;
     cursor: pointer;
     border-bottom: 3px solid transparent;
     box-sizing: border-box;
     padding: 0 5px;
+    text-align: center;
 }
 
 @each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
