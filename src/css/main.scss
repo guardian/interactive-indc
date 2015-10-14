@@ -352,11 +352,7 @@ $h-countryMenu: 40px;
 
 .indc-stepper {
 	margin: auto;
-    background-color: white;
 	position: absolute;
-	@include mq(tablet) {
-		margin-left: 40px;
-	}
 	svg {
 		overflow: visible;
 	}
@@ -367,12 +363,7 @@ $h-countryMenu: 40px;
 	color: #333;
 	cursor: pointer;
 	text-align: center;
-		display: inline-block;
-	@include mq(tablet) {
-		// text-align: right;
-		// margin-right: 10px;
-		// line-height: ;
-	}
+	display: inline-block;
 }
 
 .indc-stepper__arrow {
