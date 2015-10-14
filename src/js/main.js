@@ -401,7 +401,7 @@ async function run(el) {
         var width2012 = compact ? 18 : 36;
         leftpadding = showYAxis ? 15 : 0;
 
-        groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, 50)`)
+        groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, ${compact ? 30 : 50})`)
         key2012text.attr({x: compact ? 25 : 50})
 
 
