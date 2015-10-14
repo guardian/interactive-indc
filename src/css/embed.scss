@@ -40,7 +40,7 @@ $c-developed: #4A84B8;
 }
 
 .card {
-	background: #969696;
+	background: #f1f1f1;
 	padding: 0 10px;
 	max-width: 620px;
 	box-sizing: border-box;
@@ -55,7 +55,7 @@ $c-developed: #4A84B8;
 
 .card__blurb {
 	@include fs-bodyHeading(2);
-	color: #dfdfdf;
+	color: #767676;
 	margin: 0;
 	margin-bottom: 12px;
 }
@@ -109,4 +109,16 @@ $c-developed: #4A84B8;
 		float: right;
 		margin-left: 10px;
 	}
+}
+
+.indc-line--emissions {
+	stroke: #767676 !important;
+}
+
+.indc-emissionslabel {
+	fill: #767676 !important;
+}
+
+svg marker path[fill="white"] {
+	fill: #767676 !important;
 }
