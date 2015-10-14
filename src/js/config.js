@@ -8,7 +8,7 @@ System.config({
     ]
   },
   traceurOptions: {
-    asyncFunctions: true,
+    "asyncFunctions": true,
     "optional": [
       "runtime"
     ]
