@@ -48,12 +48,14 @@
                     <div class="indc-article__header">
                         <h1 class="indc-article__country">{{=country.fullName}}</h1>
                         <h2 class="indc-article__heading">{{=country.heading || 'Headline missing'}}</h2>
-                        <div class="indc-article__emissions" country="{{=country.name}}"></div>
+                        <h2 class="indc-article__blurb">
+                            <div class="indc-article__emissions" country="{{=country.name}}"></div>
+                            {{=country.blurb}}
+                        </h2>
                     </div>
                 </div>
                 <div class="indc-article__body-container">
                     <div class="indc-article__body is-collapsed">
-                        <h2 class="indc-article__blurb">{{=country.blurb}}</h2>
                         {{=country.body}}
                         <button class="indc-article__more">Read more</button>
                     </div>

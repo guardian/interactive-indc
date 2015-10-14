@@ -207,22 +207,22 @@ async function run(el) {
 
         var dtype = d.emissions.Developing === 'TRUE' ? 'developing' : 'developed';
         console.log(colors[dtype]);
-        createMarker(defs, `projection-${i}`, 10, '#333', '#969696');
+        createMarker(defs, `projection-${i}`, 10, 'white', '#969696');
         createMarker(defs, `pledge-${i}`, 20, colors[dtype], '#969696');
 
         svg.attr({class: 'indc-country indc-country--' + dtype});
 
         svg.append('line').attr('class', 'indc-todayline')
 
-        svg.append('line').attr('class', 'indc-zeroline')
+        //svg.append('line').attr('class', 'indc-zeroline')
 
-        var group = svg.append('g');
+        /*var group = svg.append('g');
         group.selectAll('text')
             .data(range(1990, 2030, 10))
             .enter()
                 .append('text')
                 .attr('class', 'indc-year-text')
-                .text(y => y);
+                .text(y => y);*/
 
         svg.append('path')
             .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})

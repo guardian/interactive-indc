@@ -145,7 +145,7 @@ $h-countryMenu: 40px;
 
 .indc-line--emissions {
     stroke-width: 2;
-    stroke: #333 !important;
+    stroke: white !important;
 }
 
 .indc-line--past {
@@ -443,9 +443,14 @@ $h-countryMenu: 40px;
 .indc-article__header {
 	background: #969696;
     margin: 0 auto;
-    min-height: 200px;
     position: relative;
     padding-bottom: 12px;
+
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
 }
 
 .indc-article__country {
@@ -463,24 +468,20 @@ $h-countryMenu: 40px;
 	@include fs-headline(7);
 	color: #fff;
 	margin: 0;
-	margin-top: 12px;
 	padding-bottom: 12px;
 	@include mq(tablet) {
-		margin-top: 24px;
 		max-width: 360px;
 	}
 	@include mq(desktop) {
-		margin-top: 72px;
 		max-width: 520px;
 	}
 }
 
 .indc-article__blurb {
-	@include fs-header(3);
-    font-size: 20px;
+	@include fs-header(4);
     font-weight: 600;
 	max-width: 620px;
-	color: #999;
+	color: #bdbdbd;
 	margin: 0;
 	padding: 12px 0;
 
@@ -491,7 +492,12 @@ $h-countryMenu: 40px;
 	color: #333;
 	background: #ffffff;
 	margin: auto;
-	padding-bottom: 24px;
+    padding-top: 10px;
+    padding-bottom: 60px;
+    @include mq(mobileLandscape) {
+        padding-top: 20px;
+        padding-bottom: 72px;
+    }
 }
 
 .indc-article__body {
@@ -600,7 +606,7 @@ $h-countryMenu: 40px;
 @each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
 	.indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
 	.indc-country-menu__item[country="#{$country}"]:hover {
-		border-color: $c-developed;
+		border-color: #333;
 		color: #333;
 	}
 	.indc-article[country="#{$country}"] .indc-article__country { color: $c-developed; }
@@ -609,7 +615,7 @@ $h-countryMenu: 40px;
 @each $country in ('Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco') {
 	.indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
 	.indc-country-menu__item[country="#{$country}"]:hover {
-		border-color: $c-developing;
+		border-color: #333;
 		color: #333;
 	}
 	.indc-article[country="#{$country}"] .indc-article__country { color: $c-developing; }
@@ -617,31 +623,27 @@ $h-countryMenu: 40px;
 
 .indc-article__emissions {
 	width: 100%;
-	height: 240px;
-	margin: 0;
+	height: 160px;
 	@include mq(tablet) {
-		width: 320px;
-		right: 20px;
-		height: calc(100% - 48px);
-		top: 24px;
-		position: absolute;
-	}
-	@include mq(desktop) {
-		width: 400px;
-		right: 40px;
+        margin-left: 25px;
+		width: 200px;
+        height: 120px;
+        float: right;
 	}
 }
 
 .indc-year-text {
     @include fs-textSans(2);
-    color: #767676;
+    font-weight: normal;
+    fill: #767676;
     text-anchor: middle;
 }
 
 .element-image {
 	display: block;
 	width: 100%;
-	margin: 12px 0;
+
+    margin: 24px 0;
 
 	img {
 		width: 100%;
@@ -650,13 +652,5 @@ $h-countryMenu: 40px;
 	figcaption {
 		@include fs-textSans(1);
 	    color: #767676;
-	}
-
-	@include mq(desktop) {
-		margin: 12px 20px;
-		margin-top: 0;
-		width: 580px;
-		margin-right: -280px;
-		float: right;
 	}
 }
