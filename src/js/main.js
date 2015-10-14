@@ -14,7 +14,7 @@ import share from './lib/share'
 
 var mainTemplateFn = doT.template(mainTemplate);
 
-var shareFn = share('Which countries are doing the most to stop dangerous global warming?', 'http://gu/SHORTURL');
+var shareFn = share('Which countries are doing the most to stop dangerous global warming?', 'http://gu.com/p/4d9xk');
 
 const colors = {
     developing: '#F69A31',
