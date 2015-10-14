@@ -127,7 +127,8 @@ async function run(el) {
     var width, height;
     var xpadding = 0;
     var leftpadding;
-    var max = regmax = 15000;
+    var max = 15000;
+    var regmax = max;
     var toppadding = 30;
     var view;
     var lastscaley;
