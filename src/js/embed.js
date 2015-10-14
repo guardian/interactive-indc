@@ -3,6 +3,7 @@ import iframeMessenger from 'guardian/iframe-messenger'
 import doT from 'olado/doT'
 import countryCardTemplate from '../templates/country.html!text'
 import charts from '../imgs/embedcharts.json!json'
+import traceurRuntime from 'traceur-runtime'
 
 var countryCardTemplateFn = doT.template(countryCardTemplate);
 

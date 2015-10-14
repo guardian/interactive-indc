@@ -109,7 +109,6 @@ async function run(el) {
             'pastEmissions-pc': range(1990, 2012).map(v => { return {year: v, val: data[c].emissions[v] / data[c].population[v] } }),
             allEmissions: allEmissions,
             yFn: d3.scale.linear().domain([0, Math.max.apply(null, allEmissions)]).range([70, 0]),
-            yFn: d3.scale.linear().domain([0, Math.max.apply(null, allEmissions)]).range([70, 0]),
             '1990': data[c].emissions['1990'],
             '2012': data[c].emissions['2012'],
             '2030a': data[c].emissions['2030'],
