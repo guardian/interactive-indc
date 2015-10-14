@@ -17,7 +17,7 @@ cancelFrame = cancelFrame || (id => clearTimeout(id));
 
 var currentFrame = null;
 
-export default function scrollTo(el) {
+export default function scrollTo(el, cb) {
     var start = window.pageYOffset;
     var end = getOffset(el) + 1;
     var distance = end - start;
@@ -34,6 +34,7 @@ export default function scrollTo(el) {
             currentFrame = animationFrame(scrollHandler);
         } else {
             currentFrame = null;
+            cb();
         }
     });
 };

@@ -622,11 +622,6 @@ async function run(el) {
         }
     })
 
-    bean.on(els.menuPlaceholder, 'click', 'li', evt => {
-        var country = evt.target.getAttribute('country');
-        scrollTo(el.querySelector(`.indc-article__anchor[country='${country}']`));
-    });
-
     var articleEls = [].slice.call(el.querySelectorAll('.indc-article__anchor')).reverse();
     var updateMenuState = () => {
         for (var i = 0; i < articleEls.length; i++) {
@@ -639,6 +634,11 @@ async function run(el) {
     }
 
     window.addEventListener('scroll', throttle(updateMenuState, 150));
+
+    bean.on(els.menuPlaceholder, 'click', 'li', evt => {
+        var country = evt.target.getAttribute('country');
+        scrollTo(el.querySelector(`.indc-article__anchor[country='${country}']`), updateMenuState);
+    });
 
     [].slice.call(el.querySelectorAll('.indc-article__more')).forEach(moreEl => {
         moreEl.addEventListener('click', () => bonzo(moreEl.parentNode).removeClass('is-collapsed'));
