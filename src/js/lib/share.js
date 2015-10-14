@@ -8,7 +8,7 @@ export default function share(title, shareURL) {
         var shareWindow;
 
         if (network === 'twitter') {
-            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage);
+            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage + ' https://pic.twitter.com/gD0miA4G0P');
         } else if (network === 'facebook') {
             shareWindow = facebookBaseUrl + shareURL;
         } else if (network === 'email') {
