@@ -142,23 +142,23 @@ async function run(el) {
     });
 
     var els = {
-        container: el.querySelector('.container'),
-        overviewContainer: el.querySelector('.overview-container'),
-        menuPlaceholder: el.querySelector('.country-menu-placeholder'),
-        menuContainer: el.querySelector('.country-menu-container'),
-        svgContainer: el.querySelector('.svg-container'),
-        copyHeader: el.querySelector('.copy__header'),
-        copyDesc: el.querySelector('.copy__desc'),
-        currentView: el.querySelector('.stepper__currentview'),
-        viewCount: el.querySelector('.stepper__viewcount'),
+        container: el.querySelector('.indc-container'),
+        overviewContainer: el.querySelector('.indc-overview-container'),
+        menuPlaceholder: el.querySelector('.indc-country-menu-placeholder'),
+        menuContainer: el.querySelector('.indc-country-menu-container'),
+        svgContainer: el.querySelector('.indc-svg-container'),
+        copyHeader: el.querySelector('.indc-copy__header'),
+        copyDesc: el.querySelector('.indc-copy__desc'),
+        currentView: el.querySelector('.indc-stepper__currentview'),
+        viewCount: el.querySelector('.indc-stepper__viewcount'),
     };
 
     els.viewCount.innerHTML = views.length;
-    els.svg = d3.select(els.svgContainer).append('svg').attr({class: 'overview'});
+    els.svg = d3.select(els.svgContainer).append('svg').attr({class: 'indc-overview'});
     els.defs = els.svg.append("defs");
 
 
-    var emissionsRenderFns = [].slice.call(el.querySelectorAll('.article__emissions')).map(node => {
+    var emissionsRenderFns = [].slice.call(el.querySelectorAll('.indc-article__emissions')).map(node => {
         var country = node.getAttribute('country');
         var emissions = range(1990, 2030).map(y => [y, data[country].emissions[y]]);
         var pledge = range(2013, 2030).map(y => [y, data[country].pledgemin[y]]);
@@ -170,16 +170,16 @@ async function run(el) {
         var svg = d3.select(node).append('svg')
 
         svg.append('line')
-            .attr({class: 'line line--todaymarker'})
+            .attr({class: 'indc-line indc-line--todaymarker'})
 
         svg.append('path')
-            .attr('class', 'line line--emissions')
+            .attr('class', 'indc-line indc-line--emissions')
             .datum(points)
 
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
         svg.append('path')
-            .attr('class', 'line line--emissionspledge')
+            .attr('class', 'indc-line indc-line--emissionspledge')
             .datum(pledgePoints)
 
         return function render() {
@@ -194,17 +194,17 @@ async function run(el) {
             let svg = d3.select(node).select('svg');
             svg.attr({height: height, width: width});
 
-            svg.select('.line--todaymarker').attr({
+            svg.select('.indc-line--todaymarker').attr({
                 x1: xFn(2012), x2: xFn(2012),
                 y1: height * 0.1, y2: height
             })
 
-            svg.select('.line--emissions')
+            svg.select('.indc-line--emissions')
                 .attr('d', d => {
                     return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
                 })
 
-            svg.select('.line--emissionspledge')
+            svg.select('.indc-line--emissionspledge')
                 .attr('d', d => {
                     return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
                 })
@@ -278,86 +278,86 @@ async function run(el) {
     var groups = {
         all: els.svg.append('g').attr({transform: `translate(${leftpadding} 0)`})
     };
-    groups.axis = groups.all.append('g').attr('class', 'axis')
-    groups.labels = groups.all.append('g').attr('class', 'labels')
-    groups.lines = groups.all.append('g').attr('class', 'lines')
-    groups.countries = groups.all.append('g').attr('class', 'countries')
-    groups.key = groups.all.append('g').attr('class', 'key')
+    groups.axis = groups.all.append('g').attr('class', 'indc-axis')
+    groups.labels = groups.all.append('g').attr('class', 'indc-labels')
+    groups.lines = groups.all.append('g').attr('class', 'indc-lines')
+    groups.countries = groups.all.append('g').attr('class', 'indc-countries')
+    groups.key = groups.all.append('g').attr('class', 'indc-key')
 
-    els.zeroline = groups.lines.append('line').attr('class', 'zeroline')
-    els.zerolabel = groups.lines.append('text').attr('class', 'zerolabel').text('0')
+    els.zeroline = groups.lines.append('line').attr('class', 'indc-zeroline')
+    els.zerolabel = groups.lines.append('text').attr('class', 'indc-zerolabel').text('0')
 
     els.yaxistext = groups.axis.append('text').text('test test test').attr({
-        class: 'axis__text',
+        class: 'indc-axis__text',
         dx: 40
     })
 
     els.hoveraxis = groups.axis.append('line').attr({
-        class: 'line axis__hover'
+        class: 'indc-line indc-axis__hover'
     })
 
 
     els.hoveraxistext = groups.axis.append('text').attr({
-        class: 'line axis__hovertext',
+        class: 'indc-line indc-axis__hovertext',
         'text-anchor': 'start',
         dx: 5, dy: -6,
         x: 0
     })
 
     groups.key.append('text').text('2012 emissions').attr({x: 50, y: 34});
-    var keypledgetext = groups.key.append('text').attr({class: 'key__pledge-text', x: 0, y: 68});
+    var keypledgetext = groups.key.append('text').attr({class: 'indc-key__pledge-text', x: 0, y: 68});
     keypledgetext.append('tspan').text('2030 projection')
     keypledgetext.append('tspan').text('with pledge').attr({x: 0, dy: '1.4em'})
 
-    groups.key.append('text').text('2030 projection').attr({class: 'key__projection-text', x: 0, y: 2});
-    groups.key.append('text').text('1990 to 2012').attr({class: 'key__past-text', x: 35, y: 60});
+    groups.key.append('text').text('2030 projection').attr({class: 'indc-key__projection-text', x: 0, y: 2});
+    groups.key.append('text').text('1990 to 2012').attr({class: 'indc-key__past-text', x: 35, y: 60});
 
 
     var key = {
         projection: groups.key.append('line').attr({
-            class: 'line line--projection', "marker-end": "url(#marker-projection-key)",
+            class: 'indc-line indc-line--projection', "marker-end": "url(#marker-projection-key)",
             y1: 30, y2: 8,
             stroke: colors.key
         }),
         pledge: groups.key.append('line').attr({
-            class: 'line line--pledge', "marker-end": "url(#marker-pledge-key)",
+            class: 'indc-line indc-line--pledge', "marker-end": "url(#marker-pledge-key)",
             y1: 30, y2: 55,
             stroke: colors.key
         }),
         past: groups.key.append('line').attr({
-            class: 'line line--past',
+            class: 'indc-line indc-line--past',
             y1: 30, y2: 70,
             stroke: colors.key
         }),
         bar: groups.key.append('line').attr({
-            class: 'line line--2012',
+            class: 'indc-line indc-line--2012',
             stroke: colors.key
         })
     };
 
     els.markerKey = groups.key.append('text').attr({x: 22, y: 70});
 
-    els.gridLines = range(0, maxGridLines).map(i => groups.lines.append('line').attr({class: 'line line--gridline'}))
+    els.gridLines = range(0, maxGridLines).map(i => groups.lines.append('line').attr({class: 'indc-line indc-line--gridline'}))
 
     els.countries = groups.countries.selectAll('g').data(overviewDataPoints, d => d.country);
 
     els.countries.exit().remove()
     var g = els.countries.enter().append('g')
-            .attr({class: 'country', country: d => d.country})
-            .classed('country--developing', d => d.developing)
-            .classed('country--developed', d => !d.developing)
+            .attr({class: 'indc-country', country: d => d.country})
+            .classed('indc-country--developing', d => d.developing)
+            .classed('indc-country--developed', d => !d.developing)
 
 
-    g.insert('line').attr({class: 'line line--past'})
+    g.insert('line').attr({class: 'indc-line indc-line--past'})
 
-    g.insert('line').attr({class: 'line line--projection'})
+    g.insert('line').attr({class: 'indc-line indc-line--projection'})
         .attr("marker-end", d => `url(#marker-projection-${d.country})`);
-    g.insert('line').attr({class: 'line line--pledge'})
+    g.insert('line').attr({class: 'indc-line indc-line--pledge'})
         .attr("marker-end", d => `url(#marker-pledge-${d.country})`);
-    g.insert('line').attr({class: 'line line--1990'})
-    g.insert('line').attr({class: 'line line--2012'})
-    g.insert('text').attr({class: 'country-label'})
-    g.insert('rect').attr({class: 'country-hitbox'})
+    g.insert('line').attr({class: 'indc-line indc-line--1990'})
+    g.insert('line').attr({class: 'indc-line indc-line--2012'})
+    g.insert('text').attr({class: 'indc-country-label'})
+    g.insert('rect').attr({class: 'indc-country-hitbox'})
 
     var renderCountries = () => {
 
@@ -459,26 +459,26 @@ async function run(el) {
         var mainYear = view === '1990' ? '1990' : '2012';
         var pastYear = '1990';
 
-        els.countries.selectAll('.country-label').text(d => compact ? meta[d.country].compact : d.country)
-        els.countries.selectAll('.line--2012')
+        els.countries.selectAll('.indc-country-label').text(d => compact ? meta[d.country].compact : d.country)
+        els.countries.selectAll('.indc-line--2012')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d) - width2012/2, x2: d => midx(d) + width2012/2,
                 y1: yFnForYear(mainYear), y2: yFnForYear(mainYear)})
 
-        els.countries.selectAll('.line--past')
+        els.countries.selectAll('.indc-line--past')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d), x2: d => midx(d),
                 y1: yFnForYear(pastYear), y2: yFnForYear(mainYear)})
 
-        els.countries.selectAll('.line--projection')
+        els.countries.selectAll('.indc-line--projection')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d) - projectionOffset, x2: d => midx(d) - projectionOffset,
                 y1: yFnForYear(mainYear), y2: yFnForYear(view === '2012' || view === '1990' ? mainYear : '2030a')})
 
-        els.countries.selectAll('.line--pledge')
+        els.countries.selectAll('.indc-line--pledge')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x1: d => midx(d) + projectionOffset, x2: d => midx(d) + projectionOffset,
@@ -509,10 +509,10 @@ async function run(el) {
                 }
             })
 
-        els.countries.selectAll('.country-hitbox')
+        els.countries.selectAll('.indc-country-hitbox')
             .attr({x: d => colx(d), y: 0, width: segmentSize, height: height})
 
-        els.countries.selectAll('.country-label')
+        els.countries.selectAll('.indc-country-label')
             .transition().duration(duration).ease(easing, 10)
             .attr({
                 x: midx,
@@ -554,26 +554,26 @@ async function run(el) {
         renderCountries();
     }
 
-    bean.on(els.svg.node(), 'click', '.country-hitbox', evt => {
+    bean.on(els.svg.node(), 'click', '.indc-country-hitbox', evt => {
         var country = evt.currentTarget.parentElement.getAttribute('country')
     })
 
-    bean.on(els.svg.node(), 'mouseenter', '.country-hitbox', evt => {
+    bean.on(els.svg.node(), 'mouseenter', '.indc-country-hitbox', evt => {
         var country = evt.currentTarget.parentElement.getAttribute('country')
         els.overviewContainer.setAttribute('hovercountry', country);
     })
 
-    bean.on(els.svg.node(), 'mouseleave', '.country-hitbox', evt => {
+    bean.on(els.svg.node(), 'mouseleave', '.indc-country-hitbox', evt => {
         els.overviewContainer.removeAttribute('hovercountry');
     })
 
-    bean.on(el.querySelector('.stepper__arrow--prev'), 'click', evt => {
+    bean.on(el.querySelector('.indc-stepper__arrow--prev'), 'click', evt => {
         var i = Math.max(0, views.indexOf(view)-1);
         setView(views[i]);
         renderCountries();
     })
 
-    bean.on(el.querySelector('.stepper__arrow--next'), 'click', evt => {
+    bean.on(el.querySelector('.indc-stepper__arrow--next'), 'click', evt => {
         els.overviewContainer.removeAttribute('started');
         var i = Math.min(views.length-1, views.indexOf(view)+1);
         setView(views[i]);
@@ -610,28 +610,25 @@ async function run(el) {
         timeout = window.setTimeout(render, 500);
     })
 
-    window.setTimeout(() => {
-    }, 1000)
-
     var menuFixed = false;
     window.addEventListener('scroll', evt => {
         var {top} = els.menuPlaceholder.getBoundingClientRect()
         if (!menuFixed && top < 0) {
-            bonzo(els.menuPlaceholder).addClass('country-menu-placeholder--fixed');
+            bonzo(els.menuPlaceholder).addClass('indc-country-menu-placeholder--fixed');
             menuFixed = true;
         } else if (menuFixed && top > 0) {
-            bonzo(els.menuPlaceholder).removeClass('country-menu-placeholder--fixed');
+            bonzo(els.menuPlaceholder).removeClass('indc-country-menu-placeholder--fixed');
             menuFixed = false;
         }
     })
 
     bean.on(els.menuPlaceholder, 'click', 'li', evt => {
         var country = evt.target.getAttribute('country');
-        scrollTo(el.querySelector(`.article__anchor[country='${country}']`));
+        scrollTo(el.querySelector(`.indc-article__anchor[country='${country}']`));
     });
 
+    var articleEls = [].slice.call(el.querySelectorAll('.indc-article__anchor')).reverse();
     var updateMenuState = () => {
-        var articleEls = [].slice.call(el.querySelectorAll('.article__anchor')).reverse();
         for (var i = 0; i < articleEls.length; i++) {
             if (articleEls[i].getBoundingClientRect().top < 0) {
                 els.container.setAttribute('country', articleEls[i].getAttribute('country'))
@@ -643,7 +640,7 @@ async function run(el) {
 
     window.addEventListener('scroll', throttle(updateMenuState, 150));
 
-    [].slice.call(el.querySelectorAll('.article__more')).forEach(moreEl => {
+    [].slice.call(el.querySelectorAll('.indc-article__more')).forEach(moreEl => {
         moreEl.addEventListener('click', () => bonzo(moreEl.parentNode).removeClass('is-collapsed'));
     });
 
