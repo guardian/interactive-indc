@@ -237,7 +237,7 @@ async function run(el) {
         svg.append('line').attr('class', 'indc-todayline')
 
         svg.append('text').attr('class', 'indc-pledgelabel').text('with pledge');
-        svg.append('text').attr('class', 'indc-emissionslabel').text('no pledge');
+        svg.append('text').attr('class', 'indc-emissionslabel').text('current trend');
 
         svg.append('text').attr('class', 'indc-chartlabel').text('1990');
         svg.append('text').attr('class', 'indc-chartlabel').text('2012');
@@ -287,7 +287,7 @@ async function run(el) {
             });
             svg.select('.indc-emissionslabel').attr({
                 x: xFn(2030) + 8,
-                y: yFn(d.emissions[2030]) + (lower ? diff2 : diff)
+                y: yFn(d.emissions[2030]) + (lower ? diff2 : {'Russia': 27, 'Kenya': 50}[d.blurbs.Country] || diff)
             });
 
             svg.select('.indc-line--emissions')
