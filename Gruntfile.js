@@ -73,6 +73,8 @@ module.exports = function(grunt) {
                             'test.html', 'harness/curl.js',
                             // interactive
                             'build/boot.js', 'build/main.css', 'build/main.js', 'build/main.js.map', 'index.html',
+                            // embed
+                            'build/embed.css', 'build/embed.js', 'build/embed.js.map', 'embed.html',
                         ],
                         dest: 'embed/indc/',
                         params: { CacheControl: 'max-age=60' }
