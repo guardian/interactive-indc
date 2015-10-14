@@ -235,16 +235,6 @@ async function run(el) {
 
         svg.append('line').attr('class', 'indc-todayline')
 
-        //svg.append('line').attr('class', 'indc-zeroline')
-
-        /*var group = svg.append('g');
-        group.selectAll('text')
-            .data(range(1990, 2030, 10))
-            .enter()
-                .append('text')
-                .attr('class', 'indc-year-text')
-                .text(y => y);*/
-
         svg.append('path')
             .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})
             .datum(points)
@@ -275,12 +265,6 @@ async function run(el) {
             svg.select('.indc-zeroline').attr({
                 x1: xFn(1990), x2: xFn(2030),
                 y1: height, y2: height
-            });
-
-            [].slice.call(node.querySelectorAll('.indc-year-text')).forEach(el => {
-                year = +el.textContent;
-                el.setAttribute('x', xFn(year));
-                el.setAttribute('y', height);
             });
 
             svg.select('.indc-line--emissions')
