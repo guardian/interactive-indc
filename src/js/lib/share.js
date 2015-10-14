@@ -2,13 +2,13 @@ const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
 const facebookBaseUrl = 'https://www.facebook.com/sharer/sharer.php?ref=responsive&u=';
 const googleBaseUrl = 'https://plus.google.com/share?url=';
 
-export default function share(title, shareURL, hashTag) {
-    return function (network, extra='') {
-        var twitterMessage = `${extra}${title} ${hashTag}`;
+export default function share(title, shareURL) {
+    return function (network, msg='') {
+        var twitterMessage = msg.replace('[LINK]', shareURL);
         var shareWindow;
 
         if (network === 'twitter') {
-            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage + ' ') + shareURL;
+            shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage);
         } else if (network === 'facebook') {
             shareWindow = facebookBaseUrl + shareURL;
         } else if (network === 'email') {

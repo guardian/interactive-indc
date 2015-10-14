@@ -8,12 +8,13 @@ import articles from '../../data/articles.json!json'
 import bean from 'fat/bean'
 import copy from '../../data/copy.json!json'
 import meta from '../../data/meta.json!json'
+import shareText from '../../data/share.json!json'
 import scrollTo from './lib/scrollTo'
 import share from './lib/share'
 
 var mainTemplateFn = doT.template(mainTemplate);
 
-var shareFn = share('Interactive title', 'http://gu/SHORTURL', '#hashtag');
+var shareFn = share('Which countries are doing the most to stop dangerous global warming?', 'http://gu/SHORTURL');
 
 const colors = {
     developing: '#F69A31',
@@ -707,7 +708,8 @@ async function run(el) {
 
     [].slice.call(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-        bean.on(shareEl, 'click', () => shareFn(network));
+        var msg = network === 'twitter' && shareText[shareEl.getAttribute('data-country')];
+        bean.on(shareEl, 'click', () => shareFn(network, msg));
     });
 
     iframeMessenger.resize()
