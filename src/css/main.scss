@@ -479,9 +479,11 @@ $h-countryMenu: 40px;
 }
 
 .article__blurb {
-	@include fs-bodyHeading(4);
+	@include fs-header(3);
+    font-size: 20px;
+    font-weight: 600;
 	max-width: 620px;
-	color: #bdbdbd;
+	color: #999;
 	margin: 0;
 	padding: 12px 0;
 
@@ -535,7 +537,7 @@ $h-countryMenu: 40px;
 
     border: 0;
     outline: 0;
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 5px 10px;
     color: white;
     background: #005689;
