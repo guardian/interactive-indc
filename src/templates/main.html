@@ -46,12 +46,14 @@
     </div>
 
     <div class="indc-country-menu-placeholder">
+        <div class="indc-country-menu-hide-scrollbar">
         <div class="indc-country-menu-container">
             <ul class="indc-country-menu">
             {{~it.countries :country:i}}
             <li class="indc-country-menu__item" country="{{=country.name}}">{{=country.name}}</li>
             {{~}}
             </ul>
+        </div>
         </div>
     </div>
 

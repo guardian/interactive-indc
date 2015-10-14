@@ -648,7 +648,7 @@ $h-countryMenu: 40px;
 
 .indc-country-menu-placeholder--fixed {
     background-color: #c3c3c3;
-    .indc-country-menu-container {
+    .indc-country-menu-hide-scrollbar {
         position: fixed;
         top: 0;
     }
@@ -658,10 +658,25 @@ $h-countryMenu: 40px;
     }
 }
 
+.indc-country-menu-hide-scrollbar {
+    position: relative;
+    overflow: hidden;
+    height: 60px;
+    width: 100%;
+    .indc-country-menu-placeholder--fixed & {
+        height: $h-countryMenu;
+    }
+}
+
 .indc-country-menu-container {
     background-color: #c3c3c3;
     position: absolute;
     width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .indc-country-menu {
