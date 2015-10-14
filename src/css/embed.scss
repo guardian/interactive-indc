@@ -1,13 +1,14 @@
 @import 'font';
 @import 'mq';
 
+
 body, html {
 	margin: 0;
 	padding: 0;
 }
 
 .card__chart-container {
-	width: 50%;
+	width: 100%;
 	position: relative;
 	> div:first-child {
 		position: relative;
@@ -22,6 +23,21 @@ body, html {
 		border-left: 1px solid #bdbdbd;
 		border-bottom: 1px solid #bdbdbd;
 	}
+}
+
+$c-developing: #F69A31;
+$c-developed: #4A84B8;
+
+@each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
+    .card[country="#{$country}"] .card__country-name {
+		color: $c-developed;
+    }
+}
+
+@each $country in ('Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco') {
+    .card[country="#{$country}"] .card__country-name {
+		color: $c-developing;
+    }
 }
 
 
@@ -41,7 +57,7 @@ body, html {
 }
 
 .card {
-	background: #f1f1f1;
+	background: #A1A1A1;
 	padding: 0 10px;
 	max-width: 620px;
 	box-sizing: border-box;
@@ -54,6 +70,38 @@ body, html {
 }
 
 .card__blurb {
+	@include fs-bodyHeading(2);
+	color: #dfdfdf;
+	margin: 0;
+	margin-bottom: 12px;
+}
+.card-cta {
+	display: block;
+	padding: 12px 0;
+	cursor: pointer;
+	color: #005689;
+	text-decoration: none;
+	&:hover .card-cta__text {
+		text-decoration: underline;
+	}
+}
+
+.card-cta__arrow {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.card-cta__text {
+	display: inline-block;
 	@include fs-bodyCopy(1);
-	margin: 12px 0;
+}
+
+.cart-cta__arrow-icon {
+	fill: #005689;
+}
+
+.card__stats{
+	color: #dfdfdf;
+	display: none;
+	@include fs-bodyCopy(2);
 }
