@@ -65,6 +65,7 @@ $h-countryMenu: 40px;
 .indc-furniture {
     max-width: 740px;
     color: #767676;
+    margin-bottom: 20px;
 
     @include fs-bodyCopy(2);
 
@@ -141,7 +142,7 @@ $h-countryMenu: 40px;
 }
 
 .indc-overview-container {
-    padding-top: 10px;
+    margin-top: 10px;
     @include mq(mobileLandscape) {
         padding-top: 20px;
     }
@@ -331,6 +332,8 @@ $h-countryMenu: 40px;
 }
 
 .indc-svg-container{
+    @include f-textSans;
+
     padding-top: 12px;
     @include mq(tablet) {
         padding-top: 0;
