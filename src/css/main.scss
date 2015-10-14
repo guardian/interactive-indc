@@ -2,8 +2,8 @@
 @import 'mq';
 
 body, html {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body { background: #f5f5f5; }
@@ -49,54 +49,54 @@ $h-countryMenu: 40px;
 }
 
 .indc-lines {
-	line {
-		stroke-width: 1;
-		fill: none;
-		vector-effect: non-scaling-stroke;
-		shape-rendering: crispEdges;
-	}
-	.indc-zeropledge {
-		stroke: #bdbdbd;
-	}
+    line {
+        stroke-width: 1;
+        fill: none;
+        vector-effect: non-scaling-stroke;
+        shape-rendering: crispEdges;
+    }
+    .indc-zeropledge {
+        stroke: #bdbdbd;
+    }
 }
 
 .indc-line {
-	stroke-width: 1;
-	fill: none;
-	vector-effect: non-scaling-stroke;
+    stroke-width: 1;
+    fill: none;
+    vector-effect: non-scaling-stroke;
 }
 
 .indc-labels text {
-	text-anchor: middle;
+    text-anchor: middle;
     font-size: 14px;
 }
 
 .indc-country--developed {
-	.indc-point { fill: $c-developed; }
-	.indc-line { stroke: $c-developed; }
-	.indc-country-label { fill: $c-developed; }
-	.indc-overview--developed & {
-		display: none;
-	}
+    .indc-point { fill: $c-developed; }
+    .indc-line { stroke: $c-developed; }
+    .indc-country-label { fill: $c-developed; }
+    .indc-overview--developed & {
+        display: none;
+    }
 }
 
 .indc-country--developing {
-	.indc-point { fill: $c-developing; }
-	.indc-line { stroke: $c-developing; }
-	.indc-country-label { fill: $c-developing; }
-	.indc-overview--developing & {
-		display: none;
-	}
+    .indc-point { fill: $c-developing; }
+    .indc-line { stroke: $c-developing; }
+    .indc-country-label { fill: $c-developing; }
+    .indc-overview--developing & {
+        display: none;
+    }
 }
 
 .indc-overview {
-	margin-top: -24px;
+    margin-top: -24px;
 }
 
 .indc-overview-container {
-	min-height: 200px;
+    min-height: 200px;
     max-width: 960px;
-	position: relative;
+    position: relative;
 
     margin: 0 10px;
     @include mq(mobileLandscape) {
@@ -128,19 +128,19 @@ $h-countryMenu: 40px;
 }
 
 .indc-line--2012 {
-	stroke-width: 2;
+    stroke-width: 2;
 }
 
 .indc-line--projection {
-	stroke-width: 2;
+    stroke-width: 2;
 }
 .indc-line--pledge {
-	stroke-dasharray: 2,1;
-	stroke-width: 4px;
-	@include mq(tablet) {
-		stroke-width: 10;
-		stroke-dasharray: 0;
-	}
+    stroke-dasharray: 2,1;
+    stroke-width: 4px;
+    @include mq(tablet) {
+        stroke-width: 10;
+        stroke-dasharray: 0;
+    }
 }
 
 .indc-line--emissions {
@@ -149,35 +149,35 @@ $h-countryMenu: 40px;
 }
 
 .indc-line--past {
-	opacity: 0.3;
-	display: none;
-	stroke-width: 10;
+    opacity: 0.3;
+    display: none;
+    stroke-width: 10;
     stroke-dasharray: 1 1;
-	.indc-country--developed & { stroke: $c-developed; }
-	.indc-country--developing & { stroke: $c-developing; }
+    .indc-country--developed & { stroke: $c-developed; }
+    .indc-country--developing & { stroke: $c-developing; }
 }
 
 .indc-country-label {
-	text-anchor: middle;
-	font-size: 12px;
-	fill: #767676;
-	opacity: 0.7;
-	stroke: white;
+    text-anchor: middle;
+    font-size: 12px;
+    fill: #767676;
+    opacity: 0.7;
+    stroke: white;
     paint-order: stroke;
     stroke-width: 2;
     @include mq(tablet, $until: desktop) {
-    	font-size: 10px;
+        font-size: 10px;
     }
 }
 
 .indc-key {
-	display: block;
-	font-size: 12px;
-	fill: #767676;
+    display: block;
+    font-size: 12px;
+    fill: #767676;
 }
 
 .indc-zeroline {
-	stroke: #dfdfdf;
+    stroke: #dfdfdf;
 }
 
 .indc-todayline {
@@ -187,113 +187,113 @@ $h-countryMenu: 40px;
 }
 
 .indc-controls {
-	float: right;
-	display: none;
-	label {
-		display: block;
-	}
+    float: right;
+    display: none;
+    label {
+        display: block;
+    }
 }
 
 .indc-zerolabel {
-	@include fs-textSans(1);
-	text-anchor: start;
-	fill: #767676;
+    @include fs-textSans(1);
+    text-anchor: start;
+    fill: #767676;
 }
 
 .indc-control-panel {
-	input {
-		display: none;
-	}
-	label span {
-		display: inline-block;
-		background-color: #f1f1f1;
-		border-radius: 24px;
-		@include fs-textSans(1);
-		padding: 4px 10px;
-		cursor: pointer;
-	}
-	input:checked + span {
-		background-color: #005689;
-		color: #fff;
-	}
-	display: none;
-	position: absolute;
-	left: 0;
-	top: 500px;
+    input {
+        display: none;
+    }
+    label span {
+        display: inline-block;
+        background-color: #f1f1f1;
+        border-radius: 24px;
+        @include fs-textSans(1);
+        padding: 4px 10px;
+        cursor: pointer;
+    }
+    input:checked + span {
+        background-color: #005689;
+        color: #fff;
+    }
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 500px;
 }
 
 .indc-country-hitbox {
-	fill: transparent;
-	stroke: none;
-	// cursor: pointer;
+    fill: transparent;
+    stroke: none;
+    // cursor: pointer;
 }
 
 .indc-overview-container[view="cumulative"],
 .indc-overview-container[view="cumulativezoom"],
 .indc-overview-container[view="1990"] {
-	.indc-key {
-		display: none;
-	}
-	.indc-country {
-		.indc-line--2012 {
-			stroke-width: 3;
-		}
-		.indc-line--pledge,
-		.indc-line--projection {
-			display: none;
-		}
-	}
+    .indc-key {
+        display: none;
+    }
+    .indc-country {
+        .indc-line--2012 {
+            stroke-width: 3;
+        }
+        .indc-line--pledge,
+        .indc-line--projection {
+            display: none;
+        }
+    }
 }
 
 .indc-overview-container[view="2012"] {
-	.indc-key {
-		.indc-line--projection, .indc-key__projection-text,
-		.indc-line--pledge, .indc-key__pledge-text {
-			display: none;
-		}
-	}
-	.indc-country {
-		.indc-line--2012 {
-			stroke-width: 3;
-		}
-		.indc-line--pledge,
-		.indc-line--projection {
-			display: none;
-		}
-	}
+    .indc-key {
+        .indc-line--projection, .indc-key__projection-text,
+        .indc-line--pledge, .indc-key__pledge-text {
+            display: none;
+        }
+    }
+    .indc-country {
+        .indc-line--2012 {
+            stroke-width: 3;
+        }
+        .indc-line--pledge,
+        .indc-line--projection {
+            display: none;
+        }
+    }
 }
 
 .indc-overview-container[view="2030"] {
-	.indc-key {
-		.indc-line--pledge, .indc-key__pledge-text {
-			display: none;
-		}
-	}
-	.indc-country {
-		.indc-line--pledge {
-			display: none;
-		}
-	}
+    .indc-key {
+        .indc-line--pledge, .indc-key__pledge-text {
+            display: none;
+        }
+    }
+    .indc-country {
+        .indc-line--pledge {
+            display: none;
+        }
+    }
 }
 
 
 .indc-overview-container[view="2012"] .indc-country .indc-line--past {
-	display: block;
+    display: block;
 }
 
 .indc-overview-container[view="2012"] .indc-key .indc-line--past {
-	display: inline;
+    display: inline;
 }
 
 .indc-overview-container:not([view="2012"]) .indc-key .indc-key__past-text {
-	display: none;
+    display: none;
 }
 
 .indc-svg-container{
-	padding-top: 12px;
-	@include mq(tablet) {
-		padding-top: 0;
-	}
+    padding-top: 12px;
+    @include mq(tablet) {
+        padding-top: 0;
+    }
 }
 .indc-copy {
     z-index: 1;
@@ -304,132 +304,132 @@ $h-countryMenu: 40px;
 
 
 .indc-copy--desktop {
-	@include mq($until: tablet) {
-		display: none;
-	}
+    @include mq($until: tablet) {
+        display: none;
+    }
 }
 
 .indc-copy--mobile {
-	padding-bottom: 24px;
-	@include mq(tablet) {
-		display: none;
-	}
+    padding-bottom: 24px;
+    @include mq(tablet) {
+        display: none;
+    }
 }
 
 .indc-copy__header {
-	@include fs-bodyHeading(1);
-	top: 0;
-	left: 30px;
-	margin-top: 0;
-	margin-bottom: 6px;
-	@include mq(tablet) {
-		@include fs-bodyHeading(3, true);
-		position: static;
-	}
+    @include fs-bodyHeading(1);
+    top: 0;
+    left: 30px;
+    margin-top: 0;
+    margin-bottom: 6px;
+    @include mq(tablet) {
+        @include fs-bodyHeading(3, true);
+        position: static;
+    }
 }
 
 .indc-copy__desc {
-	@include fs-bodyCopy(1);
-	min-height: 80px;
-	margin-bottom: 0;
-	margin-top: 6px;
+    @include fs-bodyCopy(1);
+    min-height: 80px;
+    margin-bottom: 0;
+    margin-top: 6px;
 }
 
 .indc-axis__line {
-	stroke: #dfdfdf;
-	shape-rendering: crispEdges;
+    stroke: #dfdfdf;
+    shape-rendering: crispEdges;
 }
 .indc-axis__text {
-	@include fs-textSans(3);
-	fill: #999;
+    @include fs-textSans(3);
+    fill: #999;
 }
 .indc-axis__hover {
-	stroke: #e1e1e1;
-	shape-rendering: crispEdges;
+    stroke: #e1e1e1;
+    shape-rendering: crispEdges;
 }
 
 .indc-axis__hovertext {
-	@include fs-textSans(1);
-	fill: #999;
+    @include fs-textSans(1);
+    fill: #999;
 }
 
 .indc-stepper {
-	margin: auto;
-	position: absolute;
-	svg {
-		overflow: visible;
-	}
+    margin: auto;
+    position: absolute;
+    svg {
+        overflow: visible;
+    }
 }
 .indc-stepper__progress {
-	@include fs-textSans(4);
-	line-height: 30px;
-	color: #333;
-	cursor: pointer;
-	text-align: center;
-	display: inline-block;
+    @include fs-textSans(4);
+    line-height: 30px;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
 }
 
 .indc-stepper__arrow {
-	background-color: transparent;
-	border: 0;
-	outline: 0;
-	width: 48px;
-	height: 60px;
-	padding: 0;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    width: 48px;
+    height: 60px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
     transition: opacity 0.1s ease-out;
 }
 
 .indc-stepper__arrow--prev {
-	.indc-overview-container[view="2030"] & {
-		opacity: 0.2;
-		cursor: default;
-	}
+    .indc-overview-container[view="2030"] & {
+        opacity: 0.2;
+        cursor: default;
+    }
 }
 
 @keyframes bounce {
-	0%    {opacity: 1; right: calc(100% + 5px)}
-	50%   {opacity: 1; right: calc(100% + 15px)}
-	100%  {opacity: 1; right: calc(100% + 5px)}
+    0%    {opacity: 1; right: calc(100% + 5px)}
+    50%   {opacity: 1; right: calc(100% + 15px)}
+    100%  {opacity: 1; right: calc(100% + 5px)}
 }
 
 
 .indc-stepper__arrow--next {
-	.indc-overview-container[view="2012"] & {
-		opacity: 0.2;
-		cursor: default;
-	}
+    .indc-overview-container[view="2012"] & {
+        opacity: 0.2;
+        cursor: default;
+    }
 }
 
 .indc-country-card__chart {
-	position: absolute;
-	top: 10px;
-	right: 24px;
+    position: absolute;
+    top: 10px;
+    right: 24px;
 }
 
 .indc-line--card {
-	stroke: #767676;
+    stroke: #767676;
 }
 
 
 .indc-header {
-	background: white;
-	padding-top: 12px;
-	margin: auto;
+    background: white;
+    padding-top: 12px;
+    margin: auto;
 }
 .indc-content-container {
-	margin: auto;
-	background-color: #f7f7f7;
+    margin: auto;
+    background-color: #f7f7f7;
 }
 .indc-content-body {
-	max-width: 620px;
-	margin: auto;
+    max-width: 620px;
+    margin: auto;
 }
 
 .indc-article {
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .indc-article__anchor {
@@ -440,11 +440,11 @@ $h-countryMenu: 40px;
 }
 
 .indc-article__header-container {
-	background: #535353;
+    background: #535353;
 }
 
 .indc-article__header {
-	background: #969696;
+    background: #969696;
     margin: 0 auto;
     position: relative;
     padding-bottom: 12px;
@@ -457,14 +457,14 @@ $h-countryMenu: 40px;
 }
 
 .indc-article__country {
-	color: #333;
-	@include fs-bodyHeading(4);
-	margin: 0;
-	padding-bottom: 12px;
-	padding-top: 12px;
-	@include mq(desktop) {
-		padding-top: 24px;
-	}
+    color: #333;
+    @include fs-bodyHeading(4);
+    margin: 0;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    @include mq(desktop) {
+        padding-top: 24px;
+    }
     position: relative;
 }
 
@@ -479,33 +479,33 @@ $h-countryMenu: 40px;
 }
 
 .indc-article__heading {
-	@include fs-headline(7);
-	color: #fff;
-	margin: 0;
-	padding-bottom: 12px;
-	@include mq(tablet) {
-		max-width: 360px;
-	}
-	@include mq(desktop) {
-		max-width: 520px;
-	}
+    @include fs-headline(7);
+    color: #fff;
+    margin: 0;
+    padding-bottom: 12px;
+    @include mq(tablet) {
+        max-width: 360px;
+    }
+    @include mq(desktop) {
+        max-width: 520px;
+    }
 }
 
 .indc-article__blurb {
-	@include fs-header(4);
+    @include fs-header(4);
     font-weight: 600;
-	max-width: 620px;
-	color: #bdbdbd;
-	margin: 0;
-	padding: 12px 0;
+    max-width: 620px;
+    color: #bdbdbd;
+    margin: 0;
+    padding: 12px 0;
 
 }
 
 .indc-article__body-container {
-	@include fs-bodyCopy(2);
-	color: #333;
-	background: #ffffff;
-	margin: auto;
+    @include fs-bodyCopy(2);
+    color: #333;
+    background: #ffffff;
+    margin: auto;
     padding-top: 10px;
     padding-bottom: 60px;
     @include mq(mobileLandscape) {
@@ -515,7 +515,7 @@ $h-countryMenu: 40px;
 }
 
 .indc-article__body {
-	max-width: 620px;
+    max-width: 620px;
 
     &.is-collapsed {
         p {
@@ -536,8 +536,8 @@ $h-countryMenu: 40px;
         padding-bottom: 24px;
     }
 
-	a {
-		color: #005689;
+    a {
+        color: #005689;
         text-decoration: none;
         border-bottom: 1px solid #dcdcdc;
         transition: border-bottom-color 0.15s ease-out;
@@ -545,7 +545,7 @@ $h-countryMenu: 40px;
             text-decoration: none;
             border-bottom-color: #6e99b3;
         }
-	}
+    }
 }
 
 .indc-article__more {
@@ -568,39 +568,39 @@ $h-countryMenu: 40px;
 }
 
 .indc-country-menu-placeholder {
-	height: 60px;
-	position: relative;
+    height: 60px;
+    position: relative;
     z-index: 5;
 }
 
 
 .indc-country-menu-placeholder--fixed {
-	background-color: #c3c3c3;
-	.indc-country-menu-container {
-		position: fixed;
-		top: 0;
-	}
-	.indc-country-menu {
-		line-height: $h-countryMenu;
-		height: $h-countryMenu;
-	}
+    background-color: #c3c3c3;
+    .indc-country-menu-container {
+        position: fixed;
+        top: 0;
+    }
+    .indc-country-menu {
+        line-height: $h-countryMenu;
+        height: $h-countryMenu;
+    }
 }
 
 .indc-country-menu-container {
-	background-color: #c3c3c3;
-	position: absolute;
-	width: 100%;
+    background-color: #c3c3c3;
+    position: absolute;
+    width: 100%;
 }
 
 .indc-country-menu {
-	list-style-type: none;
-	background-color: #cbcbcb;
-	padding: 0 5px;
-	box-sizing: border-box;
-	margin: auto;
-	@include fs-bodyHeading(1);
-	line-height: 60px;
-	height: 60px;
+    list-style-type: none;
+    background-color: #cbcbcb;
+    padding: 0 5px;
+    box-sizing: border-box;
+    margin: auto;
+    @include fs-bodyHeading(1);
+    line-height: 60px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     overflow-x: scroll;
@@ -608,48 +608,48 @@ $h-countryMenu: 40px;
         display: none;
     }
     @include mq(tablet) {
-		padding: 0 15px;
+        padding: 0 15px;
     }
     @include mq(desktop) {
-		padding: 0 35px;
+        padding: 0 35px;
     }
 }
 
 .indc-country-menu__item {
-	color: white;
-	cursor: pointer;
-	border-bottom: 3px solid transparent;
-	box-sizing: border-box;
-	padding: 0 5px;
+    color: white;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    box-sizing: border-box;
+    padding: 0 5px;
 }
 
 @each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
-	.indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
-	.indc-country-menu__item[country="#{$country}"]:hover {
-		border-color: #333;
-		color: #333;
-	}
-	.indc-article[country="#{$country}"] .indc-article__country { color: $c-developed; }
+    .indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
+    .indc-country-menu__item[country="#{$country}"]:hover {
+        border-color: #333;
+        color: #333;
+    }
+    .indc-article[country="#{$country}"] .indc-article__country { color: $c-developed; }
 }
 
 @each $country in ('Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco') {
-	.indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
-	.indc-country-menu__item[country="#{$country}"]:hover {
-		border-color: #333;
-		color: #333;
-	}
-	.indc-article[country="#{$country}"] .indc-article__country { color: $c-developing; }
+    .indc-container[country="#{$country}"] .indc-country-menu__item[country="#{$country}"],
+    .indc-country-menu__item[country="#{$country}"]:hover {
+        border-color: #333;
+        color: #333;
+    }
+    .indc-article[country="#{$country}"] .indc-article__country { color: $c-developing; }
 }
 
 .indc-article__emissions {
-	width: 100%;
-	height: 160px;
-	@include mq(tablet) {
+    width: 100%;
+    height: 160px;
+    @include mq(tablet) {
         margin-left: 25px;
-		width: 200px;
+        width: 200px;
         height: 120px;
         float: right;
-	}
+    }
 }
 
 .indc-year-text {
@@ -660,19 +660,19 @@ $h-countryMenu: 40px;
 }
 
 .element-image {
-	display: block;
-	width: 100%;
+    display: block;
+    width: 100%;
 
     margin: 24px 0;
 
-	img {
-		width: 100%;
-		height: auto;
-	}
-	figcaption {
-		@include fs-textSans(1);
-	    color: #767676;
-	}
+    img {
+        width: 100%;
+        height: auto;
+    }
+    figcaption {
+        @include fs-textSans(1);
+        color: #767676;
+    }
 }
 
 @import "share"
