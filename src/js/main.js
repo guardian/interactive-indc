@@ -12,6 +12,12 @@ import scrollTo from './lib/scrollTo'
 
 var mainTemplateFn = doT.template(mainTemplate);
 
+const colors = {
+    developing: '#F69A31',
+    developed: '#4A84B8',
+    key: '#999999'
+};
+
 function range(start, stop, step=1){
     var a=[start], b=start;
     while(b<stop){b+=step;a.push(b)}
@@ -157,29 +163,64 @@ async function run(el) {
     els.svg = d3.select(els.svgContainer).append('svg').attr({class: 'indc-overview'});
     els.defs = els.svg.append("defs");
 
+    function createMarker(defs, id, size, color, bgColor, d) {
+        var clipId = `clip-${id}`;
+        var clipPath = defs.append('clipPath')
+            .datum(d)
+            .attr('id', clipId)
+            .append('rect')
+                .attr({x: 0, y: -5, width: 8, height: 10});
+        let marker = defs.append("marker")
+            .attr({
+                "id": `marker-${id}`,
+                "viewBox": "0 -5 8 10",
+                "refX": 7.8,
+                "refY": 0,
+                "markerWidth": size,
+                "markerHeight": size,
+                'markerUnits': 'userSpaceOnUse',
+                "orient": "auto",
+                'clip-path': `url(#${clipId})`
+            })
+        marker.append('path').attr({
+            'd': "M0,-5L8,0L0,5",
+            'fill': color
+        })
+        marker.append('path').attr({
+            'd': 'M0,-5L8,-5L8,5L0,5L8,0Z',
+            'fill': bgColor
+        })
+    }
 
     var emissionsRenderFns = [].slice.call(el.querySelectorAll('.indc-article__emissions')).map(node => {
         var country = node.getAttribute('country');
-        var emissions = range(1990, 2030).map(y => [y, data[country].emissions[y]]);
-        var pledge = range(2013, 2030).map(y => [y, data[country].pledgemin[y]]);
+        var d = data[country];
+        var emissions = range(1990, 2030).map(y => [y, d.emissions[y]]);
+        var pledge = range(2013, 2030).map(y => [y, d.pledgemin[y]]);
 
             var max = Math.max.apply(null, [].concat(emissions.map(v=>v[1]), pledge.map(v=>v[1])));
 
         var points = emissions.slice();
 
         var svg = d3.select(node).append('svg')
+        var defs = svg.append('defs');
+        var dtype = d.developing ? 'developing' : 'developed';
+        createMarker(defs, 'projection', 10, colors[dtype], '#969696');
+        createMarker(defs, 'pledge', 20, colors[dtype], '#969696');
+
+        svg.attr({class: 'indc-country indc-country--' + dtype});
 
         svg.append('line')
-            .attr({class: 'indc-line indc-line--todaymarker'})
+            .attr('class', 'indc-line indc-line--todaymarker')
 
         svg.append('path')
-            .attr('class', 'indc-line indc-line--emissions')
+            .attr({'class': 'indc-line indc-line--projection', 'marker-end': 'url(#marker-projection)'})
             .datum(points)
 
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
         svg.append('path')
-            .attr('class', 'indc-line indc-line--emissionspledge')
+            .attr({'class': 'indc-line indc-line--pledge', 'marker-end': 'url(#marker-pledge)'})
             .datum(pledgePoints)
 
         return function render() {
@@ -199,12 +240,12 @@ async function run(el) {
                 y1: height * 0.1, y2: height
             })
 
-            svg.select('.indc-line--emissions')
+            svg.select('.indc-line--projection')
                 .attr('d', d => {
                     return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
                 })
 
-            svg.select('.indc-line--emissionspledge')
+            svg.select('.indc-line--pledge')
                 .attr('d', d => {
                     return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
                 })
@@ -223,41 +264,6 @@ async function run(el) {
     setView(views[0]);
     resetDimensions();
 
-    var colors = {
-        developing: '#F69A31',
-        developed: '#4A84B8',
-        key: '#999999'
-    }
-
-    function createMarker(id, size, color, d) {
-        var clipId = `clip-${id}`;
-        var clipPath = els.defs.append('clipPath')
-            .datum(d)
-            .attr('id', clipId)
-            .append('rect')
-                .attr({x: 0, y: -5, width: 8, height: 10});
-        let marker = els.defs.append("marker")
-            .attr({
-                "id": `marker-${id}`,
-                "viewBox": "0 -5 8 10",
-                "refX": 7.8,
-                "refY": 0,
-                "markerWidth": size,
-                "markerHeight": size,
-                'markerUnits': 'userSpaceOnUse',
-                "orient": "auto",
-                'clip-path': `url(#${clipId})`
-            })
-        marker.append('path').attr({
-            'd': "M0,-5L8,0L0,5",
-            'fill': color
-        })
-        marker.append('path').attr({
-            'd': 'M0,-5L8,-5L8,5L0,5L8,0Z',
-            'fill': '#ffffff'
-        })
-    }
-
 
     function getDomain(view) {
         if (view === 'cumulative') return [0, view === 'cumulativezoom' ? 40000 : 600000]
@@ -268,11 +274,11 @@ async function run(el) {
 
     overviewDataPoints.forEach(d => {
         var color = d.developing ? colors.developing : colors.developed;
-        createMarker(`projection-${d.country}`, 10, color, d);
-        createMarker(`pledge-${d.country}`, 20, color, d);
+        createMarker(els.defs, `projection-${d.country}`, 10, color, 'white', d);
+        createMarker(els.defs, `pledge-${d.country}`, 20, color, 'white', d);
     })
-    createMarker('projection-key', 10, colors.key)
-    createMarker('pledge-key', 20, colors.key)
+    createMarker(els.defs, 'projection-key', 10, colors.key, 'white')
+    createMarker(els.defs, 'pledge-key', 20, colors.key, 'white')
 
 
     var groups = {

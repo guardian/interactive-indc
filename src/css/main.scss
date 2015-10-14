@@ -115,14 +115,16 @@ $h-countryMenu: 40px;
     stroke-dasharray: 2, 5;
 }
 
-.indc-line--1990,
-.indc-line--2012,
-.indc-line--2030,
-.indc-line--past,
-.indc-line--projection,
-.indc-line--pledge {
-	vector-effect: non-scaling-stroke;
-	shape-rendering: crispEdges;
+.indc-overview {
+    .indc-line--1990,
+    .indc-line--2012,
+    .indc-line--2030,
+    .indc-line--past,
+    .indc-line--projection,
+    .indc-line--pledge {
+        vector-effect: non-scaling-stroke;
+        shape-rendering: crispEdges;
+    }
 }
 
 .indc-line--2012 {
@@ -631,14 +633,6 @@ $h-countryMenu: 40px;
 		width: 400px;
 		right: 40px;
 	}
-}
-.indc-line--emissions {
-	stroke: #333;
-}
-.indc-line--emissionspledge {
-	stroke: #333;
-    stroke-dasharray: 4,3;
-    stroke: #4A84B8;
 }
 
 .indc-line--todaymarker {
