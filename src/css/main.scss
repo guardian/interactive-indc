@@ -72,15 +72,6 @@ $h-countryMenu: 40px;
     p {
         max-width: 620px;
     }
-
-    a {
-        color: #005689;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-        font-weight: bold;
-    }
 }
 
 .indc-title {
@@ -93,11 +84,6 @@ $h-countryMenu: 40px;
     @include mq(tablet) {
         font-size: 56px;
     }
-}
-
-.indc-date {
-    @include fs-textSans(2);
-    margin-top: -8px;
 }
 
 .indc-lines {
@@ -121,6 +107,20 @@ $h-countryMenu: 40px;
 .indc-labels text {
     text-anchor: middle;
     font-size: 14px;
+}
+
+.indc-pledgelabel,
+.indc-emissionslabel {
+    text-anchor: end;
+    fill: white;
+}
+.indc-pledgelabel {
+    .indc-country--developed & {
+        fill: $c-developed;
+    }
+    .indc-country--developing & {
+        fill: $c-developing;
+    }
 }
 
 .indc-country--developed {
@@ -411,7 +411,7 @@ $h-countryMenu: 40px;
 .indc-country {
     @include fs-textSans(1);
     font-weight: normal;
-    text {
+    .indc-chartlabel {
         fill: #717171;
         text-anchor: middle;
     }
@@ -438,7 +438,9 @@ $h-countryMenu: 40px;
     border: 0;
     outline: 0;
     width: 48px;
-    height: 60px;
+    height: 48px;
+    border: 1px solid #333;
+    border-radius: 100px;
     padding: 0;
     cursor: pointer;
     display: inline-block;
@@ -712,9 +714,8 @@ $h-countryMenu: 40px;
 .indc-article__emissions {
     width: 100%;
     height: 130px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     @include mq(mobileLandscape) {
-        margin-bottom: 0;
         margin-left: 25px;
         width: 220px;
         float: right;

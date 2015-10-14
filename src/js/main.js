@@ -235,6 +235,9 @@ async function run(el) {
 
         svg.append('line').attr('class', 'indc-todayline')
 
+        svg.append('text').attr('class', 'indc-pledgelabel').text('with pledge');
+        svg.append('text').attr('class', 'indc-emissionslabel').text('no pledge');
+
         svg.append('text').attr('class', 'indc-chartlabel').text('1990');
         svg.append('text').attr('class', 'indc-chartlabel').text('2012');
         svg.append('text').attr('class', 'indc-chartlabel').text('2030');
@@ -271,6 +274,19 @@ async function run(el) {
                 var year = +labelEl.textContent;
                 labelEl.setAttribute('x', xFn(year));
                 labelEl.setAttribute('y', height);
+            });
+
+            // haha
+            var lower = parseFloat(d.emissions[2030]) > parseFloat(d.pledgemin[2030]);
+            var diff = dtype === 'developing' && d.blurbs.Country !== 'Mexico' ? 40 : 20;
+            var diff2 = {'EU': -25, 'Japan': -20}[d.blurbs.Country] || -10;
+            svg.select('.indc-pledgelabel').attr({
+                x: xFn(2030) + 8,
+                y: yFn(d.pledgemin[2030]) + (lower ? diff : diff2)
+            });
+            svg.select('.indc-emissionslabel').attr({
+                x: xFn(2030) + 8,
+                y: yFn(d.emissions[2030]) + (lower ? diff2 : diff)
             });
 
             svg.select('.indc-line--emissions')
