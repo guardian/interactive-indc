@@ -42,8 +42,8 @@ module.exports = function(grunt) {
             options: {
                 execOptions: { cwd: '.' }
             },
-            main: { command: './node_modules/.bin/jspm bundle-sfx src/js/main build/main.js --format amd' },
-            embed: { command: './node_modules/.bin/jspm bundle -m src/js/embed build/embed.js' }
+            main: { command: './node_modules/.bin/jspm bundle-sfx -m src/js/main build/main.js --format amd' },
+            embed: { command: './node_modules/.bin/jspm bundle-sfx -m src/js/embed build/embed.js' }
         },
 
         aws: awsKeys,

@@ -74,8 +74,10 @@ async function run(el) {
     iframeMessenger.resize()
 }
 
-export function init(el) {
-    run(el)
+function init() {
+    run(document.querySelector('#container'))
         .then(_ => console.log('fin'))
         .catch(err => console.log(err.stack))
 }
+
+init();
