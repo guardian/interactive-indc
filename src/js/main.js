@@ -332,7 +332,7 @@ async function run(el) {
         x: 0
     })
 
-    var key2012text = groups.key.append('text').text('2012 emissions').attr({x: 30, y: 34});
+    var key2012text = groups.key.append('text').text('2012 emissions').attr({y: 34});
     var keypledgetext = groups.key.append('text').attr({class: 'indc-key__pledge-text', x: 0, y: 68});
     keypledgetext.append('tspan').text('2030 projection')
     keypledgetext.append('tspan').text('with pledge').attr({x: 0, dy: '1.4em'})
@@ -396,6 +396,7 @@ async function run(el) {
         leftpadding = compact ? 0 : 25;
 
         groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, 50)`)
+        key2012text.attr({x: compact ? 25 : 50})
 
 
         groups.all.attr({transform: `translate(${leftpadding} 0)`})
