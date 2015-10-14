@@ -209,9 +209,27 @@ async function run(el) {
         var defs = svg.append('defs');
 
         var dtype = d.emissions.Developing === 'TRUE' ? 'developing' : 'developed';
-        console.log(colors[dtype]);
-        createMarker(defs, `projection-${i}`, 10, 'white', '#969696');
-        createMarker(defs, `pledge-${i}`, 20, colors[dtype], '#969696');
+
+        function emissionsMarker(id, size, color) {
+            let marker = defs.append("marker")
+                .attr({
+                    "id": `marker-${id}`,
+                    "viewBox": "0 -5 8 10",
+                    "refX": 4,
+                    "refY": 0,
+                    "markerWidth": size,
+                    "markerHeight": size,
+                    'markerUnits': 'userSpaceOnUse',
+                    "orient": "auto"
+                })
+            marker.append('path').attr({
+                'd': "M0,-5L8,0L0,5",
+                'fill': color
+            })
+        }
+
+        emissionsMarker(`projection-${i}`, 10, 'white')
+        emissionsMarker(`pledge-${i}`, 20, colors[dtype])
 
         svg.attr({class: 'indc-country indc-country--' + dtype});
 

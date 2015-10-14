@@ -228,6 +228,10 @@ $h-countryMenu: 40px;
     // cursor: pointer;
 }
 
+.indc-country {
+    overflow: visible;
+}
+
 .indc-overview-container[view="cumulative"],
 .indc-overview-container[view="cumulativezoom"],
 .indc-overview-container[view="1990"] {
