@@ -3,8 +3,8 @@
 
 
 body, html {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -13,119 +13,119 @@ $c-developed: #4A84B8;
 
 @each $country in ('EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia') {
     .card[country="#{$country}"] .card__country-name {
-		color: $c-developed;
+        color: $c-developed;
     }
 }
 
 @each $country in ('Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco') {
     .card[country="#{$country}"] .card__country-name {
-		color: $c-developing;
+        color: $c-developing;
     }
 }
 
 
 .line {
-	stroke-width: 1.5;
-	fill: none;
-	stroke: #333;
-	vector-effect: non-scaling-stroke;
+    stroke-width: 1.5;
+    fill: none;
+    stroke: #333;
+    vector-effect: non-scaling-stroke;
 }
 
 .pledge {
-	stroke-width: 1.5;
-	// fill: #F7AFA1;
-	fill: none;
-	stroke: #507892;
-	vector-effect: non-scaling-stroke;
+    stroke-width: 1.5;
+    // fill: #F7AFA1;
+    fill: none;
+    stroke: #507892;
+    vector-effect: non-scaling-stroke;
 }
 
 .card {
-	background: #f1f1f1;
-	padding: 0 10px;
-	max-width: 620px;
-	box-sizing: border-box;
-	position: relative;
+    background: #f1f1f1;
+    padding: 0 10px;
+    max-width: 620px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .card__country-name {
-	@include fs-bodyHeading(3);
-	margin: 0 0 6px 0;
-	padding-top: 6px;
+    @include fs-bodyHeading(3);
+    margin: 0 0 6px 0;
+    padding-top: 6px;
 }
 
 .card__blurb {
-	@include fs-bodyHeading(2);
-	color: #767676;
-	margin: 0;
-	margin-bottom: 12px;
+    @include fs-bodyHeading(2);
+    color: #767676;
+    margin: 0;
+    margin-bottom: 12px;
 }
 .card-cta {
-	display: block;
-	padding: 12px 0;
-	cursor: pointer;
-	color: #005689;
-	text-decoration: none;
-	&:hover .card-cta__text {
-		text-decoration: underline;
-	}
+    display: block;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #005689;
+    text-decoration: none;
+    &:hover .card-cta__text {
+        text-decoration: underline;
+    }
 }
 
 .card-cta__arrow {
-	display: inline-block;
-	vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .card-cta__text {
-	display: inline-block;
-	@include fs-bodyCopy(1);
+    display: inline-block;
+    @include fs-bodyCopy(1);
 }
 
 .cart-cta__arrow-icon {
-	fill: #005689;
+    fill: #005689;
 }
 
 .card__stats{
-	color: #dfdfdf;
-	display: none;
-	@include fs-bodyCopy(2);
+    color: #dfdfdf;
+    display: none;
+    @include fs-bodyCopy(2);
 }
 .card__chart-container svg {
-	position: static !important;
+    position: static !important;
 }
 
 @media (max-width: 379px) {
-	.card__blurb {
-		margin-bottom: 172px;
-	}
+    .card__blurb {
+        margin-bottom: 172px;
+    }
 
-	.card__chart-container {
-		position: absolute;
-		bottom: 55px;
-	}
+    .card__chart-container {
+        position: absolute;
+        bottom: 55px;
+    }
 }
 
 @media (min-width: 380px) {
-	.card__chart-container {
-		float: right;
-		margin-left: 10px;
-	}
+    .card__chart-container {
+        float: right;
+        margin-left: 10px;
+    }
 }
 
 .indc-line--emissions {
-	stroke: #767676 !important;
+    stroke: #767676 !important;
 }
 
 .indc-emissionslabel {
-	fill: #767676 !important;
+    fill: #767676 !important;
 }
 
 svg marker path[fill="white"] {
-	fill: #767676 !important;
+    fill: #767676 !important;
 }
 
 .card__chart-header {
-	@include fs-textSans(1);
-	color: #999;
-	margin-top: 4px;
-	margin-bottom: 12px;
+    @include fs-textSans(1);
+    color: #999;
+    margin-top: 4px;
+    margin-bottom: 12px;
 }
