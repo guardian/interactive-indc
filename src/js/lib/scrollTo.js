@@ -24,6 +24,11 @@ export default function scrollTo(el, cb) {
     var total = Math.floor(Math.abs(distance) / 6 / interval) * interval;
     var elapsed = 0;
 
+    if (!distance) {
+        cb();
+        return;
+    }
+
     if (currentFrame) cancelFrame(currentFrame);
 
     currentFrame = animationFrame(function scrollHandler() {
