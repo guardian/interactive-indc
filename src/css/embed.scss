@@ -95,7 +95,7 @@ $c-developed: #4A84B8;
 
 @media (max-width: 379px) {
 	.card__blurb {
-		margin-bottom: 145px;
+		margin-bottom: 172px;
 	}
 
 	.card__chart-container {
@@ -121,4 +121,11 @@ $c-developed: #4A84B8;
 
 svg marker path[fill="white"] {
 	fill: #767676 !important;
+}
+
+.card__chart-header {
+	@include fs-textSans(1);
+	color: #999;
+	margin-top: 4px;
+	margin-bottom: 12px;
 }

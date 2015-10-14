@@ -2,7 +2,10 @@
 
 	<h2 class="card__country-name">{{=it.country}}</h2>
 
-	<div class="card__chart-container">{{=it.svg}}</div>
+	<div class="card__chart-container">
+	 	<div class="card__chart-header">CO2e emissions (MtCO2e)</div>
+		{{=it.svg}}
+	</div>
 
 	<p class="card__blurb">{{=it.blurb}}</p>
 
