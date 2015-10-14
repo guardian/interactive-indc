@@ -143,6 +143,11 @@ $h-countryMenu: 40px;
 	}
 }
 
+.indc-line--emissions {
+    stroke-width: 2;
+    stroke: #333 !important;
+}
+
 .indc-line--past {
 	opacity: 0.3;
 	display: none;
@@ -170,6 +175,12 @@ $h-countryMenu: 40px;
 
 .indc-zeroline {
 	stroke: #dfdfdf;
+}
+
+.indc-todayline {
+    stroke: #bdbdbd;
+    shape-rendering: crispEdges;
+    stroke-dasharray: 4,3;
 }
 
 .indc-controls {
@@ -630,10 +641,10 @@ $h-countryMenu: 40px;
 	}
 }
 
-.indc-line--todaymarker {
-    stroke: #d9d9d9;
-    stroke-dasharray: 4,3;
-    shape-rendering: crispEdges;
+.indc-year-text {
+    @include fs-textSans(2);
+    color: #767676;
+    text-anchor: middle;
 }
 
 .element-image {

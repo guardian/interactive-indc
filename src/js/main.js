@@ -192,7 +192,7 @@ async function run(el) {
         })
     }
 
-    var emissionsRenderFns = [].slice.call(el.querySelectorAll('.indc-article__emissions')).map(node => {
+    var emissionsRenderFns = [].slice.call(el.querySelectorAll('.indc-article__emissions')).map((node, i) => {
         var country = node.getAttribute('country');
         var d = data[country];
         var emissions = range(1990, 2030).map(y => [y, d.emissions[y]]);
@@ -204,23 +204,34 @@ async function run(el) {
 
         var svg = d3.select(node).append('svg')
         var defs = svg.append('defs');
-        var dtype = d.developing ? 'developing' : 'developed';
-        createMarker(defs, 'projection', 10, colors[dtype], '#969696');
-        createMarker(defs, 'pledge', 20, colors[dtype], '#969696');
+
+        var dtype = d.emissions.Developing === 'TRUE' ? 'developing' : 'developed';
+        console.log(colors[dtype]);
+        createMarker(defs, `projection-${i}`, 10, '#333', '#969696');
+        createMarker(defs, `pledge-${i}`, 20, colors[dtype], '#969696');
 
         svg.attr({class: 'indc-country indc-country--' + dtype});
 
-        svg.append('line')
-            .attr('class', 'indc-line indc-line--todaymarker')
+        svg.append('line').attr('class', 'indc-todayline')
+
+        svg.append('line').attr('class', 'indc-zeroline')
+
+        var group = svg.append('g');
+        group.selectAll('text')
+            .data(range(1990, 2030, 10))
+            .enter()
+                .append('text')
+                .attr('class', 'indc-year-text')
+                .text(y => y);
 
         svg.append('path')
-            .attr({'class': 'indc-line indc-line--projection', 'marker-end': 'url(#marker-projection)'})
+            .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})
             .datum(points)
 
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
         svg.append('path')
-            .attr({'class': 'indc-line indc-line--pledge', 'marker-end': 'url(#marker-pledge)'})
+            .attr({'class': 'indc-line indc-line--pledge', 'marker-end': `url(#marker-pledge-${i})`})
             .datum(pledgePoints)
 
         return function render() {
@@ -235,12 +246,23 @@ async function run(el) {
             let svg = d3.select(node).select('svg');
             svg.attr({height: height, width: width});
 
-            svg.select('.indc-line--todaymarker').attr({
+            svg.select('.indc-todayline').attr({
                 x1: xFn(2012), x2: xFn(2012),
                 y1: height * 0.1, y2: height
             })
 
-            svg.select('.indc-line--projection')
+            svg.select('.indc-zeroline').attr({
+                x1: xFn(1990), x2: xFn(2030),
+                y1: height, y2: height
+            });
+
+            [].slice.call(node.querySelectorAll('.indc-year-text')).forEach(el => {
+                year = +el.textContent;
+                el.setAttribute('x', xFn(year));
+                el.setAttribute('y', height);
+            });
+
+            svg.select('.indc-line--emissions')
                 .attr('d', d => {
                     return d3.svg.line().x(d => xFn(d[0])).y(d => yFn(d[1]))(d)/* + 'Z'*/
                 })
