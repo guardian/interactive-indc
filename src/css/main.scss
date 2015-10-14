@@ -137,7 +137,7 @@ $h-countryMenu: 40px;
 .indc-line--pledge {
 	stroke-dasharray: 2,1;
 	stroke-width: 4px;
-	@include mq(desktop) {
+	@include mq(tablet) {
 		stroke-width: 10;
 		stroke-dasharray: 0;
 	}
@@ -165,6 +165,9 @@ $h-countryMenu: 40px;
 	stroke: white;
     paint-order: stroke;
     stroke-width: 2;
+    @include mq(tablet, $until: desktop) {
+    	font-size: 10px;
+    }
 }
 
 .indc-key {
@@ -592,7 +595,7 @@ $h-countryMenu: 40px;
 .indc-country-menu {
 	list-style-type: none;
 	background-color: #cbcbcb;
-	padding: 0 35px;
+	padding: 0 5px;
 	box-sizing: border-box;
 	margin: auto;
 	@include fs-bodyHeading(1);
@@ -603,6 +606,12 @@ $h-countryMenu: 40px;
     overflow-x: scroll;
     &::-webkit-scrollbar {
         display: none;
+    }
+    @include mq(tablet) {
+		padding: 0 15px;
+    }
+    @include mq(desktop) {
+		padding: 0 35px;
     }
 }
 

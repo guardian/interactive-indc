@@ -392,11 +392,12 @@ async function run(el) {
 
     var renderCountries = () => {
 
-        var compact = width < 740;
+        var compact = window.innerWidth < 740;
+        var showYAxis = window.innerWidth > 400;
         var projectionOffset = compact ? 5 : 8;
         var bottompadding = 18;
         var width2012 = compact ? 18 : 36;
-        leftpadding = compact ? 0 : 25;
+        leftpadding = showYAxis ? 15 : 0;
 
         groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, 50)`)
         key2012text.attr({x: compact ? 25 : 50})
