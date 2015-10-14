@@ -294,6 +294,7 @@ $h-countryMenu: 40px;
     z-index: 1;
     position: relative;
     max-width: 620px;
+    background-color: white;
 }
 
 .indc-copy__header {
@@ -646,7 +647,7 @@ $h-countryMenu: 40px;
     shape-rendering: crispEdges;
 }
 
-.indc-element-image {
+.element-image {
 	display: block;
 	width: 100%;
 	margin: 12px 0;
