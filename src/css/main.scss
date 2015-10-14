@@ -288,6 +288,20 @@ $h-countryMenu: 40px;
     background-color: white;
 }
 
+
+.indc-copy--desktop {
+	@include mq($until: tablet) {
+		display: none;
+	}
+}
+
+.indc-copy--mobile {
+	padding-bottom: 24px;
+	@include mq(tablet) {
+		display: none;
+	}
+}
+
 .indc-copy__header {
 	@include fs-bodyHeading(1);
 	top: 0;

@@ -122,7 +122,7 @@ async function run(el) {
 
     var width, height;
     var xpadding = 0;
-    var leftpadding = 0//25;
+    var leftpadding;
     var max = regmax = 15000;
     var toppadding = 30;
     var view;
@@ -153,8 +153,8 @@ async function run(el) {
         menuPlaceholder: el.querySelector('.indc-country-menu-placeholder'),
         menuContainer: el.querySelector('.indc-country-menu-container'),
         svgContainer: el.querySelector('.indc-svg-container'),
-        copyHeader: el.querySelector('.indc-copy__header'),
-        copyDesc: el.querySelector('.indc-copy__desc'),
+        $copyHeader: bonzo(el.querySelectorAll('.indc-copy__header')),
+        $copyDesc: bonzo(el.querySelectorAll('.indc-copy__desc')),
         currentView: el.querySelector('.indc-stepper__currentview'),
         viewCount: el.querySelector('.indc-stepper__viewcount'),
     };
@@ -282,7 +282,7 @@ async function run(el) {
 
 
     var groups = {
-        all: els.svg.append('g').attr({transform: `translate(${leftpadding} 0)`})
+        all: els.svg.append('g')
     };
     groups.axis = groups.all.append('g').attr('class', 'indc-axis')
     groups.labels = groups.all.append('g').attr('class', 'indc-labels')
@@ -371,8 +371,12 @@ async function run(el) {
         var projectionOffset = compact ? 5 : 8;
         var bottompadding = 18;
         var width2012 = compact ? 18 : 36;
+        leftpadding = compact ? 0 : 25;
 
         groups.key.attr('transform', `translate(${width - leftpadding - (compact ? 120 : 200)}, 50)`)
+
+
+        groups.all.attr({transform: `translate(${leftpadding} 0)`})
 
         els.yaxistext.attr({
             x: 0, y: height - bottompadding - 20,
@@ -390,8 +394,8 @@ async function run(el) {
 
         els.currentView.innerHTML = views.indexOf(view) + 1;
 
-        els.copyHeader.innerHTML = copy[view].header;
-        els.copyDesc.innerHTML = copy[view].desc;
+        els.$copyHeader.text(copy[view].header);
+        els.$copyDesc.text(copy[view].desc);
         els.yaxistext.text(copy[view].axis)
 
         var easing = 'cubic-out',
