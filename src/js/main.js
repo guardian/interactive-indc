@@ -9,8 +9,11 @@ import bean from 'fat/bean'
 import copy from '../../data/copy.json!json'
 import meta from '../../data/meta.json!json'
 import scrollTo from './lib/scrollTo'
+import share from './lib/share'
 
 var mainTemplateFn = doT.template(mainTemplate);
+
+var shareFn = share('Interactive title', 'http://gu/SHORTURL', '#hashtag');
 
 const colors = {
     developing: '#F69A31',
@@ -674,7 +677,12 @@ async function run(el) {
     });
 
     [].slice.call(el.querySelectorAll('.indc-article__more')).forEach(moreEl => {
-        moreEl.addEventListener('click', () => bonzo(moreEl.parentNode).removeClass('is-collapsed'));
+        bean.on(moreEl, 'click', () => bonzo(moreEl.parentNode).removeClass('is-collapsed'));
+    });
+
+    [].slice.call(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        bean.on(shareEl, 'click', () => shareFn(network));
     });
 
     iframeMessenger.resize()

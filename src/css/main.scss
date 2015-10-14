@@ -462,6 +462,17 @@ $h-countryMenu: 40px;
 	@include mq(desktop) {
 		padding-top: 24px;
 	}
+    position: relative;
+}
+
+.indc-article__country__share {
+    float: right;
+    white-space: nowrap;
+    @include mq(leftCol) {
+        position: absolute;
+        margin-right: 20px;
+        right: 100%;
+    }
 }
 
 .indc-article__heading {
@@ -654,3 +665,5 @@ $h-countryMenu: 40px;
 	    color: #767676;
 	}
 }
+
+@import "share"

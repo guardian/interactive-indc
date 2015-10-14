@@ -46,7 +46,14 @@
                 <a class="indc-article__anchor" country="{{=country.name}}"></a>
                 <div class="indc-article__header-container">
                     <div class="indc-article__header">
-                        <h1 class="indc-article__country">{{=country.fullName}}</h1>
+                        <h1 class="indc-article__country">
+                            <div class="indc-article__country__share">
+                                <button class="interactive-share" data-network="facebook"></button>
+                                <button class="interactive-share" data-network="twitter"></button>
+                                <button class="interactive-share" data-network="email"></button>
+                            </div>
+                            {{=country.fullName}}
+                        </h1>
                         <h2 class="indc-article__heading">{{=country.heading || 'Headline missing'}}</h2>
                         <h2 class="indc-article__blurb">
                             <div class="indc-article__emissions" country="{{=country.name}}"></div>
