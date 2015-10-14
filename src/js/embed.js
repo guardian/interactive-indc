@@ -2,6 +2,7 @@ import reqwest from 'reqwest'
 import iframeMessenger from 'guardian/iframe-messenger'
 import doT from 'olado/doT'
 import countryCardTemplate from '../templates/country.html!text'
+import charts from '../imgs/embedcharts.json!json'
 
 var countryCardTemplateFn = doT.template(countryCardTemplate);
 
@@ -25,38 +26,6 @@ function coordsToPathVal(coords) {
     return coords.map(([x,y], i) => `${i===0 ? 'M' : 'L'}${x},${y.toFixed(2)}`).join('')
 }
 
-function linechart(emissions, pledgemin, pledgemax) {
-    var yearStart = 1990, yearEnd = 2030;
-    var years = range(yearStart, yearEnd);
-    var numbers = [].concat(years.map(year => emissions[year]),
-                            years.map(year => pledgemin[year]),
-                            years.map(year => pledgemax[year])).filter(v => v !== undefined)
-    var max = Math.max.apply(null, numbers);
-
-    var currentPolicyCoords = years.map(year => [year, emissions[year]]);
-    var currentPolicyScreenCoords = xyToScreen(currentPolicyCoords, max);
-    var currentPolicyPath = `<path class="line" d="${coordsToPathVal(currentPolicyScreenCoords)}"></path>`;
-
-    var pledgeMinCoords = years
-        .filter(year => pledgemin[year] !== undefined)
-        .map(year => [year, pledgemin[year]])
-    var pledgeMinScreenCoords = xyToScreen(pledgeMinCoords, max);
-    var connectingPoint1 = currentPolicyScreenCoords[currentPolicyScreenCoords.length - pledgeMinScreenCoords.length - 1];
-    pledgeMinScreenCoords.unshift(connectingPoint1);
-    var pledgeMaxCoords = years
-        .filter(year => pledgemax[year] !== undefined)
-        .map(year => [year, pledgemax[year]])
-    var pledgeMaxScreenCoords = xyToScreen(pledgeMaxCoords, max);
-    // var connectingPoint2 = currentPolicyScreenCoords[currentPolicyScreenCoords.length - pledgeMaxScreenCoords.length];
-    // pledgeMaxScreenCoords.push(connectingPoint2);
-    var pledgeScreenCoords = [].concat(/*pledgeMaxScreenCoords,*/ pledgeMinScreenCoords)
-    var pledgePath = `<path class="pledge" d="${coordsToPathVal(pledgeMinScreenCoords)}"></path>`;
-
-    var currentYearPath = `<path class="currentyear" d="M2012,${max - emissions[2012]}L2012,${max}"></path>`
-    var paths = currentYearPath + currentPolicyPath + pledgePath
-    return `<svg viewBox="${yearStart} 0 ${yearEnd-yearStart} ${max}" preserveAspectRatio="none">${paths}</svg>`;
-}
-
 function card(country, data) {
     console.log(country, data[country]);
     'x% improvement over current policies'
@@ -66,11 +35,11 @@ function card(country, data) {
 
     return countryCardTemplateFn({
         country: country,
+        svg: charts[country],
         blurb: data[country].blurbs.Copy,
         reductionFromCurrentPolicy: Number(data[country]['Reduction from current policies']['%']).toFixed(0),
         reductionFromBaseline: Number(data[country]['Reduction from baseline year']['%']).toFixed(0),
-        baselineYear: data[country]['Reduction from baseline year']['baseline'],
-        linechart: linechart(data[country].emissions, data[country].pledgemin, data[country].pledgemax)
+        baselineYear: data[country]['Reduction from baseline year']['baseline']
     });
 }
 
