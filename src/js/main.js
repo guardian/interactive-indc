@@ -776,10 +776,8 @@ async function run(el) {
         if (evt.origin !== 'http://interactive.guim.co.uk') return;
 
         var msg = JSON.parse(evt.data);
-        var iframe = iframes.find(f => f.contentWindow === evt.source);
         if (msg.type === 'set-height') {
-            console.log(iframe, msg.value);
-            iframe.height = msg.value;
+            iframes.find(f => f.contentWindow === evt.source).height = msg.value;
         }
     });
 }
