@@ -10,6 +10,7 @@ import bowser from 'ded/bowser'
 import copy from '../../data/copy.json!json'
 import meta from '../../data/meta.json!json'
 import shareText from '../../data/share.json!json'
+import authors from '../../data/authors.json!json'
 import scrollTo from './lib/scrollTo'
 import share from './lib/share'
 
@@ -145,9 +146,12 @@ async function run(el) {
 
     el.innerHTML = mainTemplateFn({
         countries: countries.map(c => {
+            var author = articles[c].response.content.fields.byline.replace(/ in .*/, '').trim();
             return {
                 fullName: meta[c].full, name: c, blurb: data[c].blurbs.Copy,
-                body: articles[c].response.content.fields.body, heading: articles[c].response.content.fields.headline
+                body: articles[c].response.content.fields.body,
+                heading: articles[c].response.content.fields.headline,
+                byline: {name: author, pic: authors[author]}
             }
         })
     });

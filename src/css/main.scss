@@ -657,6 +657,10 @@ $h-countryMenu: 50px;
         margin-bottom: 0;
         padding-bottom: 24px;
     }
+
+    strong {
+        display: none;
+    }
 }
 
 .indc-article__more {
@@ -809,6 +813,19 @@ $h-countryMenu: 50px;
         background-size: cover;
         background-position: center;
 
+    }
+}
+
+.indc-article__byline {
+    border-bottom: 1px dotted #dcdcdc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    & > img {
+        border-radius: 100px;
+        width: 36px;
+        height: 36px;
+        vertical-align: middle;
+        margin-right: 5px;
     }
 }
 
