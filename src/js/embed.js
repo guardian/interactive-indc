@@ -72,6 +72,13 @@ async function run(el) {
 
 
     iframeMessenger.resize()
+
+    var timeout;
+    window.addEventListener('resize', () => {
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(() => iframeMessenger.resize(), 200);
+    })
+
 }
 
 function init() {
