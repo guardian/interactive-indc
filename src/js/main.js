@@ -3,9 +3,10 @@ import iframeMessenger from 'guardian/iframe-messenger'
 import doT from 'olado/doT'
 import mainTemplate from '../templates/main.html!text'
 import d3 from 'd3'
-import bonzo from 'ded/bonzo'
 import articles from '../../data/articles.json!json'
 import bean from 'fat/bean'
+import bonzo from 'ded/bonzo'
+import bowser from 'ded/bowser'
 import copy from '../../data/copy.json!json'
 import meta from '../../data/meta.json!json'
 import shareText from '../../data/share.json!json'
@@ -68,7 +69,7 @@ function responseToData(spreadsheet) {
 
 async function run(el) {
     var spreadsheet = await reqwest({
-        url: 'https://interactive.guim.co.uk/docsdata-test/1uYYw7D7PPph4l_KKwEGsIfSpxkaAxYrmVP_2Tjm7V_E.json',
+        url: (bowser.msie && bowser.version < 10 ? '//' : 'https://') + 'interactive.guim.co.uk/docsdata-test/1uYYw7D7PPph4l_KKwEGsIfSpxkaAxYrmVP_2Tjm7V_E.json',
         type: 'json', contentType: 'application/json'
     });
 
