@@ -454,6 +454,9 @@ $h-countryMenu: 50px;
 .indc-axis__hovertext {
     @include fs-textSans(1);
     fill: #999;
+    stroke: white;
+    paint-order: stroke;
+    stroke-width: 2;
 }
 
 .indc-country {
@@ -830,4 +833,21 @@ $h-countryMenu: 50px;
     }
 }
 
-@import "share"
+.indc-hover-country {
+    @include fs-textSans(3);
+    text-anchor: middle;
+    stroke: white;
+    paint-order: stroke;
+    stroke-width: 2;
+    @include mq(tablet) {
+        display: none;
+    }
+}
+
+.indc-fadeout {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s 1s;
+}
+
+@import "share";

@@ -355,12 +355,12 @@ async function run(el) {
         dx: 40
     })
 
-    els.hoveraxis = groups.axis.append('line').attr({
+    els.hoveraxis = groups.all.append('line').attr({
         class: 'indc-line indc-axis__hover'
     })
 
 
-    els.hoveraxistext = groups.axis.append('text').attr({
+    els.hoveraxistext = groups.all.append('text').attr({
         class: 'indc-line indc-axis__hovertext',
         'text-anchor': 'start',
         dx: 5, dy: -6,
@@ -585,7 +585,11 @@ async function run(el) {
             })
 
         els.countries.selectAll('.indc-country-hitbox')
-            .attr({x: d => colx(d), y: 0, width: segmentSize, height: height})
+            .attr({
+                x: d => colx(d), y: v => yFnForYear(mainYear)(v) - 20,
+                width: segmentSize, height: 40,
+                touchval: yFnForYear(mainYear)
+            })
 
         els.countries.selectAll('.indc-country-label')
             .transition().duration(duration).ease(easing, 10)
@@ -629,8 +633,31 @@ async function run(el) {
         renderCountries();
     }
 
-    bean.on(els.svg.node(), 'click', '.indc-country-hitbox', evt => {
-        var country = evt.currentTarget.parentElement.getAttribute('country')
+    var fullNameTouchEl = groups.all.append('text').attr('class', 'indc-hover-country indc-fadeout'),
+        touchVal;
+
+
+    bean.on(els.svg.node(), 'touchstart', '.indc-country-hitbox', evt => {
+        var d = d3.select(evt.currentTarget.parentElement).datum();
+        fullNameTouchEl.text(meta[d.country].full)
+        var textLength = fullNameTouchEl.node().getComputedTextLength();
+        var minX = textLength/2 + 10, maxX = groups.all.node().getBBox().width - minX;
+        var hitboxX = Number(evt.currentTarget.getAttribute('x'));
+        var colwidth = evt.currentTarget.getBBox().width;
+        var midPoint = hitboxX + colwidth/2;
+        fullNameTouchEl.attr({
+            class: 'indc-hover-country',
+            x: Math.min(maxX, Math.max(minX, midPoint)),
+            y: evt.currentTarget.getAttribute('y') - 30,
+            fill: d.developing ? colors.developing : colors.developed
+        })
+        touchVal = Number(evt.currentTarget.getAttribute('touchval'));
+    })
+
+    bean.on(els.svg.node(), 'touchend', '.indc-country-hitbox', evt => {
+        var country = evt.currentTarget.parentElement.getAttribute('country');
+        fullNameTouchEl.attr('class', 'indc-hover-country indc-fadeout');
+        setTimeout(() => touchVal = undefined, 200);
     })
 
     bean.on(els.svg.node(), 'mouseenter', '.indc-country-hitbox', evt => {
@@ -663,16 +690,35 @@ async function run(el) {
         els.hoveraxistext.text('');
     }
 
+    var hoverlinetimeout;
     els.svg.node().addEventListener('mousemove', evt => {
-        var hoverval = lastscaley.invert(evt.offsetY).toFixed(0);
-        if (hoverval < 0 && view !== '%') hideHoverAxis();
-        else {
-            els.hoveraxis.attr({
-                y1: evt.offsetY, y2: evt.offsetY,
-                x1: xpadding, x2: width - leftpadding - xpadding
-            })
-            els.hoveraxistext.text(`${hoverval} ${copy[view].unit}`).attr({y: evt.offsetY});
+        var displayval;
+        if (touchVal) {
+            displayval = lastscaley.invert(touchVal);
+            console.log(touchVal);
+        } else {
+            var hoverval = lastscaley.invert(evt.offsetY);
+            if (hoverval < 0 && view !== '%') {
+                hideHoverAxis();
+                return;
+            }
+            else displayval = hoverval;
         }
+
+        var yVal = lastscaley(displayval);
+        els.hoveraxis.attr({
+            y1: yVal, y2: yVal,
+            x1: xpadding, x2: width - leftpadding - xpadding
+        })
+        els.hoveraxistext.text(`${displayval.toFixed(0)} ${copy[view].unit}`).attr({y: yVal});
+
+        var $hoveraxistext = bonzo(els.hoveraxistext.node()).removeClass('indc-fadeout')
+        var $hoveraxis = bonzo(els.hoveraxis.node()).removeClass('indc-fadeout')
+        clearTimeout(hoverlinetimeout);
+        hoverlinetimeout = setTimeout(() => {
+            $hoveraxis.addClass('indc-fadeout')
+            $hoveraxistext.addClass('indc-fadeout')
+        }, 10);
     })
 
     els.svg.node().addEventListener('mouseleave', hideHoverAxis)
