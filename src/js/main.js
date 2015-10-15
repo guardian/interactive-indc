@@ -146,7 +146,7 @@ async function run(el) {
         countries: countries.map(c => {
             return {
                 fullName: meta[c].full, name: c, blurb: data[c].blurbs.Copy,
-                body: articles[c].response.content.fields.body, heading: articles[c].response.content.webTitle
+                body: articles[c].response.content.fields.body, heading: articles[c].response.content.fields.headline
             }
         })
     });
