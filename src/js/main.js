@@ -185,7 +185,8 @@ async function run(el) {
                 "markerHeight": size,
                 'markerUnits': 'userSpaceOnUse',
                 "orient": "auto",
-                'clip-path': `url(#${clipId})`
+                'clip-path': `url(#${clipId})`,
+                'stroke': 'none'
             })
         marker.append('path').attr({
             'd': "M0,-5L8,0L0,5",
