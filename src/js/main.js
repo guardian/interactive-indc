@@ -771,7 +771,17 @@ async function run(el) {
         bean.on(shareEl, 'click', () => shareFn(network, msg));
     });
 
-    iframeMessenger.resize()
+    var iframes = [].slice.call(el.querySelectorAll('iframe'));
+    window.addEventListener('message', evt => {
+        if (evt.origin !== 'http://interactive.guim.co.uk') return;
+
+        var msg = JSON.parse(evt.data);
+        var iframe = iframes.find(f => f.contentWindow === evt.source);
+        if (msg.type === 'set-height') {
+            console.log(iframe, msg.value);
+            iframe.height = msg.value;
+        }
+    });
 }
 
 export function init(el) {

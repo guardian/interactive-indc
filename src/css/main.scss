@@ -651,7 +651,8 @@ $h-countryMenu: 50px;
             }
         }
 
-        figure {
+        figure,
+        iframe {
             display: none;
         }
     }
@@ -663,6 +664,12 @@ $h-countryMenu: 50px;
 
     strong {
         display: none;
+    }
+
+    iframe {
+        margin-top: 24px;
+        width: 100%;
+        border: 0;
     }
 }
 
