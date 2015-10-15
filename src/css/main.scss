@@ -33,6 +33,20 @@ $h-countryMenu: 40px;
     }
 }
 
+.indc-furniture,
+.indc-article__body {
+    a {
+        color: #005689;
+        text-decoration: none;
+        border-bottom: 1px solid #dcdcdc;
+        transition: border-bottom-color 0.15s ease-out;
+        &:hover {
+            text-decoration: none;
+            border-bottom-color: #6e99b3;
+        }
+    }
+}
+
 .indc-article__header,
 .indc-article__body-container {
     box-sizing: border-box;
@@ -71,6 +85,24 @@ $h-countryMenu: 40px;
 
     p {
         max-width: 620px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0 0 8px 0;
+        padding: 0;
+    }
+
+    li {
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 4px;
+            border-radius: 100px;
+            background-color: #bdbdbd;
+        }
     }
 }
 
@@ -606,17 +638,6 @@ $h-countryMenu: 40px;
     p:last-child {
         margin-bottom: 0;
         padding-bottom: 24px;
-    }
-
-    a {
-        color: #005689;
-        text-decoration: none;
-        border-bottom: 1px solid #dcdcdc;
-        transition: border-bottom-color 0.15s ease-out;
-        &:hover {
-            text-decoration: none;
-            border-bottom-color: #6e99b3;
-        }
     }
 }
 
