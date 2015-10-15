@@ -34,7 +34,8 @@ $h-countryMenu: 40px;
 }
 
 .indc-furniture,
-.indc-article__body {
+.indc-article__body,
+.indc-header--footer {
     a {
         color: #005689;
         text-decoration: none;
@@ -45,6 +46,11 @@ $h-countryMenu: 40px;
             border-bottom-color: #6e99b3;
         }
     }
+}
+
+.indc-header--footer {
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .indc-article__header,
@@ -775,6 +781,11 @@ $h-countryMenu: 40px;
         @include fs-textSans(1);
         color: #767676;
     }
+}
+
+.indc-note {
+    @include fs-textSans(2);
+    color: #767676;
 }
 
 @import "share"
