@@ -306,7 +306,7 @@ async function run(el) {
 
     var resetDimensions = () => {
         var rect = els.overviewContainer.getBoundingClientRect();
-        width = rect.width; height = Math.min(400, window.innerHeight * 0.7);
+        width = rect.width; height = Math.min(450, window.innerHeight * 0.6);
     }
     var setView = newView => {
         view = newView;
