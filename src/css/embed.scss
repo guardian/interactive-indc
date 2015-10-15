@@ -68,6 +68,11 @@ $c-developed: #4A84B8;
     &:hover .card-cta__text {
         text-decoration: underline;
     }
+
+    @include mq(tablet) {
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 .card-cta__arrow {
@@ -108,6 +113,12 @@ $c-developed: #4A84B8;
     .card__chart-container {
         float: right;
         margin-left: 10px;
+        margin-bottom: 12px;
+    }
+    .card:after {
+        content: '';
+        display: block;
+        clear: both;
     }
 }
 
