@@ -33,7 +33,6 @@ $h-countryMenu: 40px;
     }
 }
 
-.indc-furniture,
 .indc-article__body,
 .indc-header--footer {
     a {
@@ -45,6 +44,17 @@ $h-countryMenu: 40px;
             text-decoration: none;
             border-bottom-color: #6e99b3;
         }
+    }
+}
+
+.indc-furniture a {
+    color: #781100;
+    text-decoration: none;
+    border-bottom: 1px solid transparentize(#781100, 0.5);
+    transition: border-bottom-color 0.15s ease-out;
+    &:hover {
+        text-decoration: none;
+        border-bottom-color: #781100;
     }
 }
 
@@ -84,8 +94,8 @@ $h-countryMenu: 40px;
 
 .indc-furniture {
     max-width: 740px;
-    color: #767676;
-    margin-bottom: 20px;
+    color: #333;
+    padding-bottom: 20px;
 
     @include fs-bodyCopy(2);
 
@@ -107,7 +117,7 @@ $h-countryMenu: 40px;
             height: 12px;
             margin-right: 4px;
             border-radius: 100px;
-            background-color: #bdbdbd;
+            background-color: #333;
         }
     }
 }
@@ -186,7 +196,7 @@ $h-countryMenu: 40px;
 }
 
 .indc-overview-container {
-    margin-top: 10px;
+    padding-top: 10px;
     @include mq(mobileLandscape) {
         padding-top: 20px;
     }
@@ -786,6 +796,18 @@ $h-countryMenu: 40px;
 .indc-note {
     @include fs-textSans(2);
     color: #767676;
+}
+
+.indc-container--bison {
+    background-color: #e6711b;
+
+    .indc-header {
+        background-color: transparent;
+        background-image: url(http://media.guim.co.uk/4710fef37d1990dfdc79aa2e505caf896d37cee2/0_400_5881_3530/2000.jpg);
+        background-size: cover;
+        background-position: center;
+
+    }
 }
 
 @import "share"
