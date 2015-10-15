@@ -223,7 +223,8 @@ async function run(el) {
                     "markerWidth": size,
                     "markerHeight": size,
                     'markerUnits': 'userSpaceOnUse',
-                    "orient": "auto"
+                    "orient": "auto",
+                    'stroke': 'none'
                 })
             marker.append('path').attr({
                 'd': "M0,-5L8,0L0,5",
@@ -248,11 +249,11 @@ async function run(el) {
         var pledgePoints = pledge.slice()
         pledgePoints.unshift(emissions[22]) // join to 2012 emissions
         svg.append('path')
-            .attr({'class': 'indc-line indc-line--pledge', 'marker-end': `url(#marker-pledge-${i})`})
+            .attr({'class': 'indc-line indc-line--pledge', 'marker-end': `url(#marker-pledge-${i})`, stroke: colors[dtype]})
             .datum(pledgePoints)
 
         svg.append('path')
-            .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`})
+            .attr({'class': 'indc-line indc-line--emissions', 'marker-end': `url(#marker-projection-${i})`, stroke: colors[dtype]})
             .datum(points)
 
         return function render() {
@@ -408,10 +409,16 @@ async function run(el) {
 
     g.insert('line').attr({class: 'indc-line indc-line--past'})
 
-    g.insert('line').attr({class: 'indc-line indc-line--projection'})
-        .attr("marker-end", d => `url(#marker-projection-${d.country})`);
-    g.insert('line').attr({class: 'indc-line indc-line--pledge'})
-        .attr("marker-end", d => `url(#marker-pledge-${d.country})`);
+    if (bowser.msie) {
+        g.insert('line').attr({class: 'indc-line indc-line--projection'})
+        g.insert('line').attr({class: 'indc-line indc-line--pledge'})
+    } else {
+        g.insert('line').attr({class: 'indc-line indc-line--projection'})
+            .attr("marker-end", d => `url(#marker-projection-${d.country})`)
+        g.insert('line').attr({class: 'indc-line indc-line--pledge'})
+            .attr("marker-end", d => `url(#marker-pledge-${d.country})`)
+    }
+
     g.insert('line').attr({class: 'indc-line indc-line--1990'})
     g.insert('line').attr({class: 'indc-line indc-line--2012'})
     g.insert('text').attr({class: 'indc-country-label'})
