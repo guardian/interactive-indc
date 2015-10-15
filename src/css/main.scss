@@ -466,7 +466,9 @@ $h-countryMenu: 40px;
 }
 
 .indc-stepper {
-    margin: auto;
+    @include mq(tablet) {
+        margin: 10px 0 0 0;
+    }
     position: absolute;
     svg {
         display: block;
