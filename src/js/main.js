@@ -78,7 +78,7 @@ async function run(el) {
 
     var countries = [
         'EU', 'Japan', 'Russia', 'US', 'Canada', 'Australia',
-        'Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Kenya', 'Mexico', 'Morocco'];
+        'Brazil', 'China', 'India', 'Indonesia', 'Ethiopia', 'Mexico', 'Morocco'];
 
     var cumulative = {
         'EU': 329071.7808,
