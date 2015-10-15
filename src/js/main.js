@@ -70,7 +70,7 @@ function responseToData(spreadsheet) {
 async function run(el) {
     var spreadsheet = await reqwest({
         url: (bowser.msie && bowser.version < 10 ? '//' : 'https://') + 'interactive.guim.co.uk/docsdata-test/1uYYw7D7PPph4l_KKwEGsIfSpxkaAxYrmVP_2Tjm7V_E.json',
-        type: 'json', contentType: 'application/json'
+        type: 'json', contentType: 'application/json', crossOrigin: true
     });
 
     var data = responseToData(spreadsheet);
