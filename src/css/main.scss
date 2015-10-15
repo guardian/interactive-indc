@@ -20,7 +20,7 @@ figure.interactive {
 $c-developing: #F69A31;
 $c-developed: #4A84B8;
 
-$h-countryMenu: 40px;
+$h-countryMenu: 50px;
 
 .indc-header,
 .indc-article__header,
@@ -692,7 +692,7 @@ $h-countryMenu: 40px;
         top: 0;
     }
     .indc-country-menu {
-        line-height: $h-countryMenu;
+        line-height: $h-countryMenu - 3px;
         height: $h-countryMenu;
     }
 }
@@ -725,7 +725,7 @@ $h-countryMenu: 40px;
     box-sizing: border-box;
     margin: auto;
     @include fs-bodyHeading(1);
-    line-height: 60px;
+    line-height: 60px - 3px;
     height: 60px;
     display: table;
     width: 100%;
@@ -800,7 +800,7 @@ $h-countryMenu: 40px;
     color: #767676;
 }
 
-.indc-container--bison {
+.indc-special-head {
     background-color: #e6711b;
 
     .indc-header {
