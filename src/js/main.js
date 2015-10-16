@@ -767,7 +767,7 @@ async function run(el) {
 
     [].slice.call(el.querySelectorAll('.interactive-share')).forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-        var msg = network === 'twitter' && shareText[shareEl.getAttribute('data-country')];
+        var msg = network === 'twitter' && shareText[shareEl.getAttribute('data-country')] || '';
         bean.on(shareEl, 'click', () => shareFn(network, msg));
     });
 
